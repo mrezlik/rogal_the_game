@@ -1,16 +1,10 @@
-def getch():
-    import sys
-    import termios
-    import tty
-    fd = sys.stdin.fileno()
-    old_settings = termios.tcgetattr(fd)
-    try:
-        tty.setraw(sys.stdin.fileno())
-        ch = sys.stdin.read(1)
-    finally:
-        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-    return ch
+from controls import getch
 
+def main():
+	x = None
+	while not(x == 'q'):
+		x = getch()
+		print(x)
 
-x = getch()
-print(x)
+if __name__ == '__main__':
+    main()
