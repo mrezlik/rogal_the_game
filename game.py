@@ -1,5 +1,7 @@
 def getch():
-    import sys, tty, termios
+    import sys
+    import termios
+    import tty
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
     try:
@@ -8,6 +10,7 @@ def getch():
     finally:
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
+
 
 x = getch()
 print(x)
