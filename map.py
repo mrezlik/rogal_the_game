@@ -22,6 +22,58 @@ def print_board(board):
 		print('')
 
 
+def change_map(board, player_coordinate_y, player_coordinate_x, command = None, board_width = 80, board_height = 20):
+	if command == 'w':
+		if player_coordinate_y == 0:
+			pass
+		else:
+			board[player_coordinate_y - 1][player_coordinate_x] = '@'
+			board[player_coordinate_y][player_coordinate_x] = ' '
+	elif command == 'a':
+		if player_coordinate_x == 0:
+			pass
+		else:
+			board[player_coordinate_y][player_coordinate_x - 1] = '@'
+			board[player_coordinate_y][player_coordinate_x] = ' '
+	elif command == 's':
+		if player_coordinate_y == board_height - 1:
+			pass
+		else:
+			board[player_coordinate_y + 1][player_coordinate_x] = '@'
+			board[player_coordinate_y][player_coordinate_x] = ' '
+	elif command == 'd':
+		if player_coordinate_x == board_width - 1:
+			pass
+		else:
+			board[player_coordinate_y][player_coordinate_x + 1] = '@'
+			board[player_coordinate_y][player_coordinate_x] = ' '
+	return board
+
+
+def change_player_position(player_coordinate_y, player_coordinate_x, command = None, board_width = 80, board_height = 20):	
+	if command == 'w':
+		if player_coordinate_y == 0:
+			pass
+		else:
+			player_coordinate_y = player_coordinate_y - 1
+	elif command == 'a':
+		if player_coordinate_x == 0:
+			pass
+		else:
+			player_coordinate_x = player_coordinate_x - 1
+	elif command == 's':
+		if player_coordinate_y == board_height - 1:
+			pass
+		else:
+			player_coordinate_y = player_coordinate_y + 1
+	elif command == 'd':
+		if player_coordinate_x == board_width - 1:
+			pass
+		else:
+			player_coordinate_x = player_coordinate_x + 1
+	return (player_coordinate_y, player_coordinate_x)
+
+
 '''def main():
 	width = int(input("Width: "))
 	height = int(input("Height: "))
