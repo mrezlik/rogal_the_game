@@ -2,8 +2,14 @@ import os
 import time
 from controls import getch
 from map import create_board, print_board, change_player_position, change_map
+from introduction import print_logo, story
+import time
 
 def main():
+	print_logo()
+	time.sleep(3)
+	story()
+	time.sleep(5)
 	map_one = create_board(80, 20)
 	player_position = (9, 44)
 	x = None
