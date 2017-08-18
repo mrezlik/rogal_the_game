@@ -6,6 +6,7 @@ from introduction import print_logo, story
 import time
 
 def main():
+	os.system('clear')
 	print_logo()
 	time.sleep(3)
 	story()
