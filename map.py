@@ -1,3 +1,6 @@
+from game_inventory import print_table, add_to_inventory
+
+
 def create_board():
     with open('map.txt', 'r') as f:
         board = f.readlines()
@@ -15,6 +18,8 @@ def print_board(board):
         for x in y:
             print(x, end="")
         print("")
+    inv = {"dagger": 100}
+    print_table(inv)
 
 
 def change_map(board, player_coordinate_y, player_coordinate_x, command=None, board_width=86, board_height=21):
