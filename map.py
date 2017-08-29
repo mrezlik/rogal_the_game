@@ -27,50 +27,74 @@ def change_map(board, player_coordinate_y, player_coordinate_x, command=None, bo
         if player_coordinate_y == 1:
             pass
         else:
-            board[player_coordinate_y - 1][player_coordinate_x] = '@'
-            board[player_coordinate_y][player_coordinate_x] = ' '
+            if board[player_coordinate_y-1][player_coordinate_x] == 'X':
+                board[player_coordinate_y-1][player_coordinate_x] = 'X'
+            else:
+                board[player_coordinate_y - 1][player_coordinate_x] = '@'
+                board[player_coordinate_y][player_coordinate_x] = ' '
     elif command == 'a':
         if player_coordinate_x == 1:
             pass
         else:
-            board[player_coordinate_y][player_coordinate_x - 1] = '@'
-            board[player_coordinate_y][player_coordinate_x] = ' '
+            if board[player_coordinate_y][player_coordinate_x] == 'X':
+                board[player_coordinate_y][player_coordinate_x] = 'X'
+            else:
+                board[player_coordinate_y][player_coordinate_x] = '@'
+                board[player_coordinate_y][player_coordinate_x+1] = ' '
     elif command == 's':
         if player_coordinate_y == board_height - 1:
             pass
         else:
-            board[player_coordinate_y + 1][player_coordinate_x] = '@'
-            board[player_coordinate_y][player_coordinate_x] = ' '
+            if board[player_coordinate_y+1][player_coordinate_x] == 'X':
+                board[player_coordinate_y+1][player_coordinate_x] = 'X'
+            else:
+                board[player_coordinate_y + 1][player_coordinate_x] = '@'
+                board[player_coordinate_y][player_coordinate_x] = ' '
     elif command == 'd':
         if player_coordinate_x == board_width - 1:
             pass
         else:
-            board[player_coordinate_y][player_coordinate_x + 1] = '@'
-            board[player_coordinate_y][player_coordinate_x] = ' '
+            if board[player_coordinate_y][player_coordinate_x+1] == 'X':
+                board[player_coordinate_y][player_coordinate_x+1] = 'X'
+            else:
+                board[player_coordinate_y][player_coordinate_x+1] = '@'
+                board[player_coordinate_y][player_coordinate_x] = ' '
     return board
 
 
-def change_player_position(player_coordinate_y, player_coordinate_x, command=None, board_width=86, board_height=21):
+def change_player_position(board, player_coordinate_y, player_coordinate_x, command=None, board_width=86, board_height=21):
     if command == 'w':
         if player_coordinate_y == 1:
             pass
         else:
-            player_coordinate_y = player_coordinate_y - 1
+            if board[player_coordinate_y-1][player_coordinate_x] == 'X':
+                pass
+            else:
+                player_coordinate_y = player_coordinate_y - 1
     elif command == 'a':
         if player_coordinate_x == 1:
             pass
         else:
-            player_coordinate_x = player_coordinate_x - 1
+            if board[player_coordinate_y][player_coordinate_x-1] == 'X':
+                pass
+            else:
+                player_coordinate_x = player_coordinate_x - 1
     elif command == 's':
         if player_coordinate_y == board_height - 1:
             pass
         else:
-            player_coordinate_y = player_coordinate_y + 1
+            if board[player_coordinate_y+1][player_coordinate_x] == 'X':
+                pass
+            else:
+                player_coordinate_y = player_coordinate_y + 1
     elif command == 'd':
         if player_coordinate_x == board_width - 1:
             pass
         else:
-            player_coordinate_x = player_coordinate_x + 1
+            if board[player_coordinate_y][player_coordinate_x+1] == 'X':
+                pass
+            else:
+                player_coordinate_x = player_coordinate_x + 1
     return (player_coordinate_y, player_coordinate_x)
 
 

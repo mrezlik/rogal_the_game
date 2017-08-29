@@ -24,7 +24,7 @@ def main():
         x = getch()
         print(x)
         map_one = change_map(map_one, player_position[0], player_position[1], x)
-        player_position = change_player_position(player_position[0], player_position[1], x)
+        player_position = change_player_position(map_one, player_position[0], player_position[1], x)
 
 
 if __name__ == '__main__':
