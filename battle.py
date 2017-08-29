@@ -1,36 +1,56 @@
-def fight(player = {'HP': 100, 'Damage': 15, 'Monsters killed': ''}, monster = {'HP': 50, 'Damage': 15, 'Name': 'Alien'}):
-	print('You have encounter the', monster['Name'], ' fight is inevitable!')
+from character import Character, Enemy, Player
+
+def fight(player, monster):
+	
+	print('You have encounter the', monster.name, 'fight is inevitable!')
+	
 	while True:
-		print('Player attack the', monster['Name'], 'for', player['Damage'], 'damage!')
-		monster['HP'] -= player['Damage']
-		if monster['HP'] < 1:
-			print('You killed the', monster['Name'], 'you monster!')
-			player['Monsters killed'] += monster['Name']
+		
+		print('Your HP:', player.hp)
+		print('Player attack the', monster.name, 'for', player.damage, 'damage!')
+		monster.hp -= player.damage
+		
+		if monster.hp < 1:
+			
+			print('You killed the', monster.name, 'you monster!\n')
+			player.exp += monster.exp
+			
+			if '|' not in player.strongest_monster_killed:
+				player.strongest_monster_killed = monster.name + '|' + str(monster.exp)
+			else:
+				if monster.exp > int(player.strongest_monster_killed[-3:]):
+					player.strongest_monster_killed = monster.name + '|' + str(monster.exp)
+			
 			return player
-		print(monster['Name'], 'attack you for', monster['Damage'], 'damage!')
-		player['HP'] -= monster['Damage']
-		if player['HP'] < 1:
-			print(monster['Name'], 'killed you, you succ!')
-			return None
+			
+		print(monster.name, 'attack you for', monster.damage, 'damage!')
+		player.hp -= monster.damage
+		
+		if player.hp < 1:
+			print(monster.name, 'killed you, u succ!\n')
+			player.alive = False
+			return player
 			
 
 def main():
-	player = {'HP': 100, 'Damage': 15, 'Monsters killed': ''}
 	
-	mutated_rat_enemy = {'HP': 20, 'Damage': 1, 'Name': 'Mutated rat'}
-	alien_enemy = {'HP': 50, 'Damage': 15, 'Name': 'Alien'}
-	robot_enemy = {'HP': 80, 'Damage': 5, 'Name': 'Robot'}
-	death_star_enemy = {'HP': 100000, 'Damage': 99999, 'Name': 'Death Star'}
+	player = Player('Player', 100, 15)
 	
-	enemies = [mutated_rat_enemy, alien_enemy, robot_enemy, death_star_enemy]
+	rat = Enemy('Mutated Rat', 20, 1, 100)
+	alien = Enemy('Alien', 50, 15, 150)
+	robot = Enemy('Robot', 80, 5, 200)
+	star = Enemy('Death Star', 100000, 99999, 999)
+	
+	enemies = [rat, rat, alien, alien, robot]
 		
 	for encounter in enemies:
-		print('Your HP:', player['HP'])
 		player = fight(player, encounter)
-		if not player:
+		if not player.alive:
 			print('Game Over Man!')
+			print('Your strongest prey was:', player.strongest_monster_killed)
 			quit()
-	print("You've won The Game!")
+	print('You have won The Game with', player.exp, 'experience points!')
+	
 
 
 if __name__ == '__main__':
