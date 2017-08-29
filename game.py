@@ -3,7 +3,8 @@ import time
 from controls import getch
 from map import create_board, print_board, change_player_position, change_map
 from introduction import print_logo, story
-import time
+from battle import fight
+from hall_of_fame import write result, print_hall
 
 def main():
 	os.system('clear')
