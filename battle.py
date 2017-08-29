@@ -16,10 +16,10 @@ def fight(player, monster):
 			player.exp += monster.exp
 			
 			if '|' not in player.strongest_monster_killed:
-				player.strongest_monster_killed = monster.name + '|' + str(monster.exp)
+				player.strongest_monster_killed = monster.name + '|' + ' ' * (5 - len(str(monster.exp))) + str(monster.exp)
 			else:
-				if monster.exp > int(player.strongest_monster_killed[-3:]):
-					player.strongest_monster_killed = monster.name + '|' + str(monster.exp)
+				if monster.exp > int(player.strongest_monster_killed[-5:]):
+					player.strongest_monster_killed = monster.name + '|' + ' ' * (5 - len(str(monster.exp))) + str(monster.exp)
 			
 			return player
 			
