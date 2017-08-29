@@ -4,7 +4,7 @@ from controls import getch
 from map import create_board, print_board, change_player_position, change_map
 from introduction import print_logo, story
 from battle import fight
-from hall_of_fame import write result, print_hall
+from hall_of_fame import write_result, print_hall
 
 def main():
 	os.system('clear')
@@ -25,6 +25,6 @@ def main():
 		map_one = change_map(map_one, player_position[0], player_position[1], x)
 		player_position = change_player_position(player_position[0], player_position[1], x)
 
-		
+
 if __name__ == '__main__':
     main()
