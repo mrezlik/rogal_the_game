@@ -1,36 +1,31 @@
-def create_board(width, height):
-    board = []
-    board.append([])
-    for i in range(width):
-        board[0].append('X')
-    for y in range(1, height - 1):
-        board.append([])
-        board[y].append('X')
-        for x in range(1, width - 1):
-            board[y].append(' ')
-        board[y].append('X')
-    board.append([])
-    for i in range(width):
-        board[height - 1].append('X')
-    return board
+def create_board():
+    with open('map.txt', 'r') as f:
+        board = f.readlines()
+    print(board)
+    mapa = []
+    for height in range(len(board)):
+        mapa.append([])
+        for width in range(len(board[height])-1):
+            mapa[height].append(board[height][width])
+    return mapa
 
 
 def print_board(board):
     for y in board:
         for x in y:
-            print(x, end='')
-        print('')
+            print(x, end="")
+        print("")
 
 
-def change_map(board, player_coordinate_y, player_coordinate_x, command = None, board_width = 80, board_height = 20):
+def change_map(board, player_coordinate_y, player_coordinate_x, command=None, board_width=86, board_height=21):
     if command == 'w':
-        if player_coordinate_y == 0:
+        if player_coordinate_y == 1:
             pass
         else:
             board[player_coordinate_y - 1][player_coordinate_x] = '@'
             board[player_coordinate_y][player_coordinate_x] = ' '
     elif command == 'a':
-        if player_coordinate_x == 0:
+        if player_coordinate_x == 1:
             pass
         else:
             board[player_coordinate_y][player_coordinate_x - 1] = '@'
@@ -50,14 +45,14 @@ def change_map(board, player_coordinate_y, player_coordinate_x, command = None, 
     return board
 
 
-def change_player_position(player_coordinate_y, player_coordinate_x, command=None, board_width=80, board_height=20):
+def change_player_position(player_coordinate_y, player_coordinate_x, command=None, board_width=86, board_height=21):
     if command == 'w':
-        if player_coordinate_y == 0:
+        if player_coordinate_y == 1:
             pass
         else:
             player_coordinate_y = player_coordinate_y - 1
     elif command == 'a':
-        if player_coordinate_x == 0:
+        if player_coordinate_x == 1:
             pass
         else:
             player_coordinate_x = player_coordinate_x - 1
@@ -74,10 +69,9 @@ def change_player_position(player_coordinate_y, player_coordinate_x, command=Non
     return (player_coordinate_y, player_coordinate_x)
 
 
-'''def main():
-    width = int(input("Width: "))
-    height = int(input("Height: "))
-    print('')
-    map_one = create_board(width, height)
-    print_board(map_one)
-main()'''
+def main():
+    map_one = create_board()
+
+
+if __name__ == '__main__':
+    main()
