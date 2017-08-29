@@ -5,6 +5,7 @@ from map import create_board, print_board, change_player_position, change_map
 from introduction import print_logo, story
 from battle import fight
 from hall_of_fame import write_result, print_hall
+from character import Character, Enemy, Player
 
 def main():
 	os.system('clear')
@@ -27,4 +28,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+	main()
