@@ -1,30 +1,31 @@
-def fight(player = [100, 15], monster = [50, 5, 'Alien']):
-	print('You have encounter the', monster[2], ' fight is inevitable!')
+def fight(player = {'HP': 100, 'Damage': 15, 'Monsters killed': ''}, monster = {'HP': 50, 'Damage': 15, 'Name': 'Alien'}):
+	print('You have encounter the', monster['Name'], ' fight is inevitable!')
 	while True:
-		print('Player attack the', monster[2], 'for', player[1], 'damage!')
-		monster[0] -= player[1]
-		if monster[0] < 1:
-			print('You killed the', monster[2], 'you monster!')
+		print('Player attack the', monster['Name'], 'for', player['Damage'], 'damage!')
+		monster['HP'] -= player['Damage']
+		if monster['HP'] < 1:
+			print('You killed the', monster['Name'], 'you monster!')
+			player['Monsters killed'] += monster['Name']
 			return player
-		print(monster[2], 'attack you for', monster[1], 'damage!')
-		player[0] -= monster[1]
-		if player[0] < 1:
-			print(monster[2], 'killed you, you succ!')
+		print(monster['Name'], 'attack you for', monster['Damage'], 'damage!')
+		player['HP'] -= monster['Damage']
+		if player['HP'] < 1:
+			print(monster['Name'], 'killed you, you succ!')
 			return None
 			
 
 def main():
-	player = [100, 15]
+	player = {'HP': 100, 'Damage': 15, 'Monsters killed': ''}
 	
-	mutated_rat_enemy = [20, 1, 'Mutated rat']
-	alien_enemy = [50, 15, 'Alien']
-	robot_enemy = [80, 5, 'Robot']
-	death_star_enemy = [100000, 99999, 'Death Star']
+	mutated_rat_enemy = {'HP': 20, 'Damage': 1, 'Name': 'Mutated rat'}
+	alien_enemy = {'HP': 50, 'Damage': 15, 'Name': 'Alien'}
+	robot_enemy = {'HP': 80, 'Damage': 5, 'Name': 'Robot'}
+	death_star_enemy = {'HP': 100000, 'Damage': 99999, 'Name': 'Death Star'}
 	
 	enemies = [mutated_rat_enemy, alien_enemy, robot_enemy, death_star_enemy]
 		
 	for encounter in enemies:
-		print('Your HP:', player[0])
+		print('Your HP:', player['HP'])
 		player = fight(player, encounter)
 		if not player:
 			print('Game Over Man!')
