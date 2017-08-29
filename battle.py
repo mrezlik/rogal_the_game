@@ -41,15 +41,15 @@ def main():
 	robot = Enemy('Robot', 80, 5, 200)
 	star = Enemy('Death Star', 100000, 99999, 999)
 	
-	enemies = [rat, alien, robot, star]
+	enemies = [rat, rat, alien, alien, robot]
 		
 	for encounter in enemies:
 		player = fight(player, encounter)
 		if not player.alive:
 			print('Game Over Man!')
-			print('Your strongest prey was', player.strongest_monster_killed)
+			print('Your strongest prey was:', player.strongest_monster_killed)
 			quit()
-	print("You've won The Game!")
+	print('You have won The Game with', player.exp, 'experience points!')
 	
 
 
