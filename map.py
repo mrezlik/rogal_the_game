@@ -74,10 +74,14 @@ def change_player_position(player_coordinate_y, player_coordinate_x, command = N
 	return (player_coordinate_y, player_coordinate_x)
 
 
-'''def main():
+def main():
 	width = int(input("Width: "))
 	height = int(input("Height: "))
 	print('')
 	map_one = create_board(width, height)
 	print_board(map_one)
-main()'''
+	
+	
+if __name__ == '__main__':
+	main()
+
