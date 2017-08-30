@@ -8,6 +8,7 @@ from hall_of_fame import write_result, print_hall, clear
 from character import Character, Enemy, Player
 from game_inventory import print_table
 from bossfight import bossfight
+from winlosescreen import win, lose
 
 def main():
 	os.system('clear')
