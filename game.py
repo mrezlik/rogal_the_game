@@ -18,15 +18,19 @@ def main():
     map_one = create_board()
     player_position = (9, 44)
     x = None
-    inventory = {"Gold": 0}
+    inv = {"Gold": 0}
     while not(x == 'q'):
         x = None
         os.system('clear')
         print_board(map_one)
-        print_table(inventory)
+        print_table(inv)
         x = getch()
-        map_one = colision(map_one, player_position[0], player_position[1], x)
+        return_from_colision = colision(inv, map_one, player_position[0], player_position[1], x)
+        map_one = return_from_colision[0]
+        inv = return_from_colision[1]
         player_position = change_player_position(map_one, player_position[0], player_position[1], x)
+
+
 
 
 if __name__ == '__main__':
