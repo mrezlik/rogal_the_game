@@ -2,10 +2,8 @@ class Character:
 	
 	alive = True
 	
-	def __init__(self, name, hp, damage):
+	def __init__(self, name):
 		self.name = name
-		self.hp = hp
-		self.damage = damage
 
 
 class Player(Character):
@@ -28,7 +26,8 @@ class Player(Character):
 	def levelup(self):
 		self.level += 1
 		self.next_level += (self.level + 1) * 100
-		self.hp += self.hp_grow
+		self.max_hp += self.hp_grow
+		self.current_hp += self.hp_grow
 		self.damage += self.damage_grow
 		
 	def choose_specialisation(self):
@@ -40,7 +39,8 @@ class Player(Character):
 				print('Choose 1, 2 or 3!')
 		if choice == '1':
 			self.specialisation = 'Soldier'
-			self.hp = 150
+			self.max_hp = 150
+			self.current_hp = self.max_hp
 			self.hp_grow = 38
 			self.damage = 5
 			self.damage_grow = 3
@@ -49,7 +49,8 @@ class Player(Character):
 			self.cloaking_field = False
 		if choice == '2':
 			self.specialisation = 'Adept'
-			self.hp = 100
+			self.max_hp = 100
+			self.current_hp = self.max_hp
 			self.hp_grow = 25
 			self.damage = 10
 			self.damage_grow = 5
@@ -58,7 +59,8 @@ class Player(Character):
 			self.cloaking_field = False
 		if choice == '3':
 			self.specialisation = 'Engineer'
-			self.hp = 50
+			self.max_hp = 50
+			self.current_hp = self.max_hp
 			self.hp_grow = 13
 			self.damage = 15
 			self.damage_grow = 8
@@ -78,13 +80,13 @@ class Enemy(Character):
 
 def main():
 	player = Player('Zdzisiek')
-	print(player.name, player.hp, player.damage, player.alive, player.specialisation, player.exp, player.level, player.next_level)
+	print(player.name, player.max_hp, player.damage, player.alive, player.specialisation, player.exp, player.level, player.next_level)
 	player.exp += 800
 	player.check_level()
-	print(player.name, player.hp, player.damage, player.alive, player.specialisation, player.exp, player.level, player.next_level)
+	print(player.name, player.max_hp, player.damage, player.alive, player.specialisation, player.exp, player.level, player.next_level)
 	player.exp += 200
 	player.check_level()
-	print(player.name, player.hp, player.damage, player.alive, player.specialisation, player.exp, player.level, player.next_level)
+	print(player.name, player.max_hp, player.damage, player.alive, player.specialisation, player.exp, player.level, player.next_level)
 
 	
 if __name__ == '__main__':

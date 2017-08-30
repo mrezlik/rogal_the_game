@@ -11,10 +11,11 @@ def fight(player, monster):
 		print('Player attack the', monster.name, 'for', player.damage, 'damage!')
 		monster.hp -= player.damage
 
-		if monster.hp < 1:
+		if monster.hp <= 0:
 
-			print('You killed the', monster.name, 'you monster!\n')
+			print('You killed the', monster.name, 'you monster!\nYou gain', monster.exp, 'experience points!')
 			player.exp += monster.exp
+			player.check_level()
 
 			if '|' not in player.strongest_monster_killed:
 				player.strongest_monster_killed = monster.name + '|' + ' ' * (5 - len(str(monster.exp))) + str(monster.exp)
@@ -35,14 +36,22 @@ def fight(player, monster):
 
 def main():
 
-	player = Player('Player', 100, 15)
+	player = Player('Stefan')
 
-	rat = Enemy('Mutated Rat', 20, 1, 100)
-	alien = Enemy('Alien', 50, 15, 150)
-	robot = Enemy('Robot', 80, 5, 200)
+	rat_1 = Enemy('Mutated Rat', 20, 1, 100)
+	rat_2 = Enemy('Mutated Rat', 20, 1, 100)
+	rat_3 = Enemy('Mutated Rat', 20, 1, 100)
+	rat_4 = Enemy('Mutated Rat', 20, 1, 100)
+	rat_5 = Enemy('Mutated Rat', 20, 1, 100)
+	alien_1 = Enemy('Alien', 50, 15, 150)
+	alien_2 = Enemy('Alien', 50, 15, 150)
+	alien_3 = Enemy('Alien', 50, 15, 150)
+	robot_1 = Enemy('Robot', 80, 5, 200)
+	robot_2 = Enemy('Robot', 80, 5, 200)
+	robot_3 = Enemy('Robot', 80, 5, 200)
 	star = Enemy('Death Star', 100000, 99999, 999)
 
-	enemies = [rat, rat, alien, alien, robot]
+	enemies = [rat_1, rat_2, alien_1, alien_2, robot_1]
 
 	for encounter in enemies:
 		player = fight(player, encounter)
