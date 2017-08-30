@@ -13,11 +13,13 @@ from winlosescreen import win, lose
 def main():
 	os.system('clear')
 	print_logo()
-	time.sleep(3)
+	time.sleep(1)
 	story()
 	x = None
 	while not x:
 		x = getch()
+	os.system('clear')
+	player = Player(input('Name your hero:'))
 	current_map = create_board('map_1.txt')
 	player_position = (9, 44)
 	inv = {"Gold": ["coins", 1, 1]}
@@ -27,7 +29,7 @@ def main():
 		print_board(current_map)
 		print_table(inv)
 		x = getch()
-		return_from_colision = colision(inv, current_map, player_position[0], player_position[1], x)
+		return_from_colision = colision(player, inv, current_map, player_position[0], player_position[1], x)
 		current_map = return_from_colision[0]
 		inv = return_from_colision[1]
 		player_position = change_player_position(current_map, player_position[0], player_position[1], x)

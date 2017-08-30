@@ -1,8 +1,21 @@
 from character import Character, Enemy, Player
 from winlosescreen import win, lose
+from controls import getch
 
-def fight(player, monster):
-
+def fight(player, x, y):
+	
+	if [x, y] == [12, 7]:
+		monster = Enemy('Mutated Rat', 20, 1, 100)
+	elif [x, y] == [1, 27]:
+		monster = Enemy('Alien', 50, 15, 150)
+	elif [x, y] == [4, 64]:
+		monster = Enemy('Mutated Rat', 20, 1, 100)
+	elif [x, y] == [8, 13]:
+		monster = Enemy('Robot', 80, 5, 200)
+	elif [x, y] == [16,71]:
+		monster = Enemy('Alien', 50, 15, 150)
+	
+	char = None
 	print(player.name, 'have encounter the', monster.name, end='')
 	print(', fight is inevitable!')
 	player.sneak_attack(monster)
@@ -10,7 +23,6 @@ def fight(player, monster):
 	while True:
 		
 		if monster.hp <= 0:
-
 			print(player.name, 'killed the', monster.name, end='')
 			print('!')
 			player.bio_heal()
@@ -25,6 +37,8 @@ def fight(player, monster):
 				if monster.exp > int(player.strongest_monster_killed[-5:]):
 					player.strongest_monster_killed = monster.name + '|' + ' ' * (5 - len(str(monster.exp))) + str(monster.exp)
 			
+			while not char:
+				char = getch()
 			return None
 
 		turn_counter += 1
@@ -39,6 +53,8 @@ def fight(player, monster):
 		if player.current_hp <= 0:
 			print(monster.name, 'killed', player.name, 'U succ!\n\n\n')
 			player.alive = False
+			while not char:
+				char = getch()
 			return None
 
 
