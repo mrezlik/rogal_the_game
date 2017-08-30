@@ -7,13 +7,13 @@ def fight(player, monster):
 
 	while True:
 
-		print('Your HP:', player.hp)
+		print('Your HP:', player.current_hp)
 		print('Player attack the', monster.name, 'for', player.damage, 'damage!')
 		monster.hp -= player.damage
 
 		if monster.hp <= 0:
 
-			print('You killed the', monster.name, 'you monster!\nYou gain', monster.exp, 'experience points!')
+			print('You killed the', monster.name, 'you monster!\nYou gain', monster.exp, 'experience points!\n\n\n')
 			player.exp += monster.exp
 			player.check_level()
 
@@ -23,15 +23,15 @@ def fight(player, monster):
 				if monster.exp > int(player.strongest_monster_killed[-5:]):
 					player.strongest_monster_killed = monster.name + '|' + ' ' * (5 - len(str(monster.exp))) + str(monster.exp)
 			
-			return player
+			return None
 
 		print(monster.name, 'attack you for', monster.damage, 'damage!')
-		player.hp -= monster.damage
+		player.current_hp -= monster.damage
 
-		if player.hp < 1:
-			print(monster.name, 'killed you, u succ!\n')
+		if player.current_hp <= 0:
+			print(monster.name, 'killed you, u succ!\n\n\n')
 			player.alive = False
-			return player
+			return None
 
 
 def main():
@@ -54,7 +54,7 @@ def main():
 	enemies = [rat_1, rat_2, alien_1, alien_2, robot_1]
 
 	for encounter in enemies:
-		player = fight(player, encounter)
+		fight(player, encounter)
 		if not player.alive:
 			lose()
 			print('Game Over Man!')

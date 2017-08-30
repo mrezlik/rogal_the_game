@@ -10,7 +10,7 @@ class Player(Character):
 	
 	exp = 0
 	strongest_monster_killed = 'You did not killed anything!'
-	level = 0
+	level = 1
 	next_level = 100
 	weapon_bonus = 1
 	
@@ -21,11 +21,12 @@ class Player(Character):
 	def check_level(self):
 		if self.exp >= self.next_level:
 			self.levelup()
+			print('You just leveled up! You gain', self.hp_grow, 'hitpoints and', self.damage_grow, 'damage! Your current level is', self.level,'\n\n\n')
 			self.check_level()
 			
 	def levelup(self):
 		self.level += 1
-		self.next_level += (self.level + 1) * 100
+		self.next_level += (self.level) * 100
 		self.max_hp += self.hp_grow
 		self.current_hp += self.hp_grow
 		self.damage += self.damage_grow
