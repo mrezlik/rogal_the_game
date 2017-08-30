@@ -1,9 +1,5 @@
-# This is the file where you must work. Write code in the functions, create new functions,
-# so they work according to the specification
 import os
 
-
-# Adds to the inventory dictionary a list of items from added_items.
 def add_to_inventory(inventory, added_items):
     inventory.update(added_items)
     return inventory
@@ -20,10 +16,6 @@ def print_table(inventory, order="count,desc"):
     print('-' * frame)
 
 
-# Imports new inventory items from a file
-# The filename comes as an argument, but by default it's
-# "import_inventory.csv". The import automatically merges items by name.
-# The file format is plain text with comma separated values (CSV).
 def import_inventory(inventory, filename="inventory.csv"):
     with open(filename) as f:
         inventory_from_file = f.read().split(',')
@@ -31,10 +23,6 @@ def import_inventory(inventory, filename="inventory.csv"):
     add_to_inventory(inventory, inventory_from_file)  # add imported inventory
 
 
-# Exports the inventory into a .csv file.
-# if the filename argument is None it creates and overwrites a file
-# called "export_inventory.csv". The file format is the same plain text
-# with comma separated values (CSV).
 def export_inventory(inventory, filename="inventory.csv"):
     os.remove(filename)  # remove file if it exist
     with open(filename, "a") as f:

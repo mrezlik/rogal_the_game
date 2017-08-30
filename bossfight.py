@@ -2,7 +2,7 @@ import os
 import random
 from hotwarmcold import game, generate_answer, check_answer, print_hint
 
-def main():
+def bossfight():
 	answer = generate_answer()
 	guess_count = 10
 	os.system('clear')
@@ -18,5 +18,10 @@ def main():
 		if guess_count == 0:
 			break
 
+
+def main():
+	bossfight()
+	
+	
 if __name__ == '__main__':
 	main()
