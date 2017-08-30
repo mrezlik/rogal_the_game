@@ -1,5 +1,22 @@
 import random
 
+def game(answer, guess_count):
+	print(answer, guess_count)
+	guess = input("What is the number?")
+	hint = check_answer(answer, guess)
+	print_hint(hint)
+		
+	if hint == ["hot", "hot", "hot"]:
+		print("good job")
+		return False
+		
+	guess_count -= 1
+	if guess_count == 0:
+		print("loser!")
+		return False
+	return guess_count
+
+
 def generate_answer():
 	answer = []
 	for x in range(3):
@@ -33,27 +50,3 @@ def print_hint(hint):
 			print('\033[91m' + "hot")
 	print('\033[00m', end='')
 
-
-def main():
-	answer = generate_answer()
-	guess_count = 10
-	while True:
-		
-		print(answer, guess_count)
-		guess = input("What is the number?")
-		hint = check_answer(answer, guess)
-		print_hint(hint)
-		
-		if hint == ["hot", "hot", "hot"]:
-			print("good job")
-			break
-		
-		guess_count -= 1
-		if guess_count == 0:
-			print("loser!")
-			print(round(end_time, 2))
-			break
-		
-	
-if __name__ == '__main__':
-	main()

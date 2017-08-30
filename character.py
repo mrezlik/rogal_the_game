@@ -94,18 +94,3 @@ class Enemy(Character):
 		self.damage = damage
 		self.exp = exp
 
-
-def main():
-	print(73 * 0.2, int(73 * 0.2))
-	player = Player('Zdzisiek')
-	print(player.name, player.max_hp, player.damage, player.alive, player.specialisation, player.exp, player.level, player.next_level)
-	player.exp += 800
-	player.check_level()
-	print(player.name, player.max_hp, player.damage, player.alive, player.specialisation, player.exp, player.level, player.next_level)
-	player.exp += 200
-	player.check_level()
-	print(player.name, player.max_hp, player.damage, player.alive, player.specialisation, player.exp, player.level, player.next_level)
-
-	
-if __name__ == '__main__':
-	main()
