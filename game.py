@@ -13,12 +13,13 @@ from winlosescreen import win, lose
 def main():
 	os.system('clear')
 	print_logo()
-	time.sleep(0)
+	time.sleep(3)
 	story()
-	time.sleep(0)
-	map_one = create_board()
-	player_position = (9, 44)
 	x = None
+	while not x:
+		x = getch()
+	map_one = create_board('map_1.txt')
+	player_position = (9, 44)
 	inv = {"Gold": ["coins", 1, 1]}
 	while not(x == 'q'):
 		x = None

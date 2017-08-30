@@ -2,8 +2,8 @@ from game_inventory import print_table, add_to_inventory
 import random
 
 
-def create_board():
-	with open('map.txt', 'r') as f:
+def create_board(name):
+	with open(name, 'r') as f:
 		board = f.readlines()
 	print(board)
 	mapa = []

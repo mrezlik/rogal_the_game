@@ -3,7 +3,7 @@ def clear():
 	hall_file.close()	
 
 
-def write_result(time, exp):
+def write_result(time, exp, level, monsters):
 	try:
 		hall_file = open('hall_of_fame.txt', 'r+')
 	except FileNotFoundError:
@@ -12,7 +12,7 @@ def write_result(time, exp):
 		hall_file = open('hall_of_fame.txt', 'r+')
 	lines = hall_file.readlines()
 
-	result = "# " + str(time) + 'seconds | Experience gained:' + exp +'\n'
+	result = '# Time:' + str(time) + 'seconds | Experience gained:' + str(exp) + 'points | Level:' + str(level) + '| Monsters slain:' + monsters
 	hall_file.write(result)
 	hall_file.close()
 	
