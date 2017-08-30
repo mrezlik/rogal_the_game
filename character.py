@@ -34,7 +34,7 @@ class Player(Character):
 		
 	def choose_specialisation(self):
 		while True:
-			choice = input('Choose your character specialisation (1, 2 or 3):\n1) Soldier: high hitpoints, low dmg, special skill: Weapon Specialist - double damage bonuses from using range weapons\n2) Adept: medium hitpoints, medium damage, special skill: Biotic Regeneration - after every combat regen 20% of max hitpoints, double regeneration from medicaments\n3) Engineer: low hitpoints, high damage, special skill: Cloaking Field - attack twice in first round of combat\n')
+			choice = input('Choose your character specialisation (1, 2 or 3):\n1) Soldier: high hitpoints, low dmg, special skill: Weapon Specialist - double damage bonuses from using weapons\n2) Adept: medium hitpoints, medium damage, special skill: Biotic Regeneration - after every combat regen 20% of max hitpoints\n3) Engineer: low hitpoints, high damage, special skill: Cloaking Field - attack twice in first round of combat\n')
 			if choice == '1' or choice == '2' or choice == '3':
 				break
 			else:

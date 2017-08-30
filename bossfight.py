@@ -1,7 +1,5 @@
 import os
 import random
-import sys
-import time
 from hotwarmcold import game, generate_answer, check_answer, print_hint
 
 def main():
