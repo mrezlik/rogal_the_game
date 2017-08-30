@@ -3,14 +3,6 @@
 import os
 
 
-# Displays the inventory.
-def display_inventory(inventory):
-    print('Inventory:')
-    for key, value in inventory.items():
-        print(key, value)
-    print('Total number of items: ', sum(inventory.values()))
-
-
 # Adds to the inventory dictionary a list of items from added_items.
 def add_to_inventory(inventory, added_items):
     for i in range(0, len(added_items)):
@@ -37,7 +29,7 @@ def print_table(inventory, order="count,desc"):
 # The filename comes as an argument, but by default it's
 # "import_inventory.csv". The import automatically merges items by name.
 # The file format is plain text with comma separated values (CSV).
-def import_inventory(inventory, filename="test_inventory.csv"):
+def import_inventory(inventory, filename="inventory.csv"):
     with open(filename) as f:
         inventory_from_file = f.read().split(',')
     inventory_from_file = list(filter(None, inventory_from_file))  # remove empty item
@@ -48,7 +40,7 @@ def import_inventory(inventory, filename="test_inventory.csv"):
 # if the filename argument is None it creates and overwrites a file
 # called "export_inventory.csv". The file format is the same plain text
 # with comma separated values (CSV).
-def export_inventory(inventory, filename="export_inventory.csv"):
+def export_inventory(inventory, filename="inventory.csv"):
     os.remove(filename)  # remove file if it exist
     with open(filename, "a") as f:
         for key, value in inventory.items():
