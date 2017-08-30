@@ -28,6 +28,7 @@ def colision(inv, board, player_coordinate_y, player_coordinate_x, command=None,
             if board[player_coordinate_y - 1][player_coordinate_x] == 'X':
                 pass
             elif board[player_coordinate_y - 1][player_coordinate_x] == '#':
+                board[player_coordinate_y - 1][player_coordinate_x] = ' '
                 loot = ["ukulele"]
                 inv = add_to_inventory(inv, loot)
             else:
@@ -70,6 +71,8 @@ def change_player_position(board, player_coordinate_y, player_coordinate_x, comm
         else:
             if board[player_coordinate_y - 1][player_coordinate_x] == 'X':
                 pass
+            elif board[player_coordinate_y - 1][player_coordinate_x] == '#':
+                exit()
             else:
                 player_coordinate_y = player_coordinate_y - 1
     elif command == 'a':
