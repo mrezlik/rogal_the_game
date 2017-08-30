@@ -1,4 +1,5 @@
 from game_inventory import print_table, add_to_inventory
+import random
 
 
 def create_board():
@@ -20,6 +21,12 @@ def print_board(board):
         print("")
 
 
+def take_item(inv):
+    loots = [["Laser gun"], ["Lightsaber"], ["First Aid Kit"], ["Shield"]]
+    loot = random.randint(0, len(loots)-1)
+    return add_to_inventory(inv, loots[loot])
+
+
 def colision(inv, board, player_coordinate_y, player_coordinate_x, command=None, board_width=86, board_height=21):
     if command == 'w':
         if player_coordinate_y == 1:
@@ -28,8 +35,7 @@ def colision(inv, board, player_coordinate_y, player_coordinate_x, command=None,
             if board[player_coordinate_y - 1][player_coordinate_x] == 'X':
                 pass
             elif board[player_coordinate_y - 1][player_coordinate_x] == '#':
-                loot = ["ukulele"]
-                inv = add_to_inventory(inv, loot)
+                inv = take_item(inv)
             else:
                 board[player_coordinate_y - 1][player_coordinate_x] = '@'
                 board[player_coordinate_y][player_coordinate_x] = ' '
@@ -39,6 +45,8 @@ def colision(inv, board, player_coordinate_y, player_coordinate_x, command=None,
         else:
             if board[player_coordinate_y][player_coordinate_x - 1] == 'X':
                 pass
+            elif board[player_coordinate_y][player_coordinate_x - 1] == '#':
+                inv = take_item(inv)
             else:
                 board[player_coordinate_y][player_coordinate_x - 1] = '@'
                 board[player_coordinate_y][player_coordinate_x] = ' '
@@ -48,6 +56,8 @@ def colision(inv, board, player_coordinate_y, player_coordinate_x, command=None,
         else:
             if board[player_coordinate_y + 1][player_coordinate_x] == 'X':
                 pass
+            elif board[player_coordinate_y + 1][player_coordinate_x] == '#':
+                inv = take_item(inv)
             else:
                 board[player_coordinate_y + 1][player_coordinate_x] = '@'
                 board[player_coordinate_y][player_coordinate_x] = ' '
@@ -57,6 +67,8 @@ def colision(inv, board, player_coordinate_y, player_coordinate_x, command=None,
         else:
             if board[player_coordinate_y][player_coordinate_x + 1] == 'X':
                 pass
+            elif board[player_coordinate_y][player_coordinate_x + 1] == '#':
+                inv = take_item(inv)
             else:
                 board[player_coordinate_y][player_coordinate_x + 1] = '@'
                 board[player_coordinate_y][player_coordinate_x] = ' '
@@ -80,6 +92,8 @@ def change_player_position(board, player_coordinate_y, player_coordinate_x, comm
         else:
             if board[player_coordinate_y][player_coordinate_x - 1] == 'X':
                 pass
+            elif board[player_coordinate_y][player_coordinate_x - 1] == '#':
+                 board[player_coordinate_y][player_coordinate_x - 1] = ' '
             else:
                 player_coordinate_x = player_coordinate_x - 1
     elif command == 's':
@@ -88,6 +102,8 @@ def change_player_position(board, player_coordinate_y, player_coordinate_x, comm
         else:
             if board[player_coordinate_y + 1][player_coordinate_x] == 'X':
                 pass
+            elif board[player_coordinate_y + 1][player_coordinate_x] == '#':
+                 board[player_coordinate_y + 1][player_coordinate_x] = ' '
             else:
                 player_coordinate_y = player_coordinate_y + 1
     elif command == 'd':
@@ -96,6 +112,8 @@ def change_player_position(board, player_coordinate_y, player_coordinate_x, comm
         else:
             if board[player_coordinate_y][player_coordinate_x + 1] == 'X':
                 pass
+            elif board[player_coordinate_y][player_coordinate_x + 1] == '#':
+                 board[player_coordinate_y][player_coordinate_x + 1] = ' '
             else:
                 player_coordinate_x = player_coordinate_x + 1
     return (player_coordinate_y, player_coordinate_x)
