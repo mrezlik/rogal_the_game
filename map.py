@@ -18,17 +18,19 @@ def print_board(board):
         for x in y:
             print(x, end="")
         print("")
-    inv = {"dagger": 100}
-    print_table(inv)
 
 
-def change_map(board, player_coordinate_y, player_coordinate_x, command=None, board_width=86, board_height=21):
+def colision(board, player_coordinate_y, player_coordinate_x, command=None, board_width=86, board_height=21):
+    inv = {}
     if command == 'w':
         if player_coordinate_y == 1:
             pass
         else:
             if board[player_coordinate_y - 1][player_coordinate_x] == 'X':
                 pass
+            elif board[player_coordinate_y - 1][player_coordinate_x] == '#':
+                loot = "SUPER MEGA HIPER ITEM"
+                inv = add_to_inventory(inv, loot)
             else:
                 board[player_coordinate_y - 1][player_coordinate_x] = '@'
                 board[player_coordinate_y][player_coordinate_x] = ' '
@@ -96,11 +98,3 @@ def change_player_position(board, player_coordinate_y, player_coordinate_x, comm
             else:
                 player_coordinate_x = player_coordinate_x + 1
     return (player_coordinate_y, player_coordinate_x)
-
-
-def main():
-    map_one = create_board()
-
-
-if __name__ == '__main__':
-    main()
