@@ -3,17 +3,19 @@ from winlosescreen import win, lose
 
 def fight(player, monster):
 
-	print('You have encounter the', monster.name, 'fight is inevitable!')
-
+	print(player.name, 'have encounter the', monster.name, end='')
+	print(', fight is inevitable!')
+	turn_counter = 0
 	while True:
-
-		print('Your HP:', player.current_hp)
-		print('Player attack the', monster.name, 'for', player.damage, 'damage!')
+		turn_counter += 1
+		print('\nTurn', turn_counter, 'Your HP:', player.current_hp)
+		print(player.name, 'attack the', monster.name, 'for', player.damage, 'damage!')
 		monster.hp -= player.damage
 
 		if monster.hp <= 0:
 
-			print('You killed the', monster.name, 'you monster!\nYou gain', monster.exp, 'experience points!\n\n\n')
+			print(player.name, 'killed the', monster.name, '!')
+			print(player.name, 'gain', monster.exp, 'experience points!\n\n\n')
 			player.exp += monster.exp
 			player.check_level()
 
@@ -25,11 +27,11 @@ def fight(player, monster):
 			
 			return None
 
-		print(monster.name, 'attack you for', monster.damage, 'damage!')
+		print(monster.name, 'attack', player.name, 'for', monster.damage, 'damage!')
 		player.current_hp -= monster.damage
 
 		if player.current_hp <= 0:
-			print(monster.name, 'killed you, u succ!\n\n\n')
+			print(monster.name, 'killed', player.name, 'U succ!\n\n\n')
 			player.alive = False
 			return None
 
@@ -51,7 +53,7 @@ def main():
 	robot_3 = Enemy('Robot', 80, 5, 200)
 	star = Enemy('Death Star', 100000, 99999, 999)
 
-	enemies = [rat_1, rat_2, alien_1, alien_2, robot_1]
+	enemies = [rat_1, rat_2, alien_1, alien_2, robot_1, star]
 
 	for encounter in enemies:
 		fight(player, encounter)
