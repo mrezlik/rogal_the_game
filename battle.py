@@ -5,16 +5,16 @@ def fight(player, monster):
 
 	print(player.name, 'have encounter the', monster.name, end='')
 	print(', fight is inevitable!')
+	player.sneak_attack(monster)
 	turn_counter = 0
 	while True:
-		turn_counter += 1
-		print('\nTurn', turn_counter, 'Your HP:', player.current_hp)
-		print(player.name, 'attack the', monster.name, 'for', player.damage, 'damage!')
-		monster.hp -= player.damage
-
+		
 		if monster.hp <= 0:
 
-			print(player.name, 'killed the', monster.name, '!')
+			print(player.name, 'killed the', monster.name, end='')
+			print('!')
+			player.bio_heal()
+			print('Your HP:', player.current_hp)
 			print(player.name, 'gain', monster.exp, 'experience points!\n\n\n')
 			player.exp += monster.exp
 			player.check_level()
@@ -27,6 +27,12 @@ def fight(player, monster):
 			
 			return None
 
+		turn_counter += 1
+		print('\nTurn', turn_counter, 'Your HP:', player.current_hp)
+		print(player.name, 'attack the', monster.name, 'for', player.damage, 'damage!')
+		monster.hp -= player.damage
+
+		
 		print(monster.name, 'attack', player.name, 'for', monster.damage, 'damage!')
 		player.current_hp -= monster.damage
 
