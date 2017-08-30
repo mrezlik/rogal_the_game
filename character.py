@@ -69,6 +69,21 @@ class Player(Character):
 			self.weapon_specialist = False
 			self.biotic_regeneration = False
 			self.cloaking_field = True
+			
+			
+	def bio_heal(self):
+		if self.biotic_regeneration == True:
+			print(self.name, end='')
+			print('s biotic powers recover back some hitpoints!')
+			self.current_hp += int(self.max_hp * 0.2)
+			if self.current_hp > self.max_hp:
+				self.current_hp = self.max_hp
+			
+			
+	def sneak_attack(self, monster):
+		if self.cloaking_field == True:
+			print('Cloaking field activated!', self.name, 'attack the', monster.name, 'for', self.damage, 'damage!')
+			monster.hp -= self.damage
 
 
 class Enemy(Character):
@@ -81,6 +96,7 @@ class Enemy(Character):
 
 
 def main():
+	print(73 * 0.2, int(73 * 0.2))
 	player = Player('Zdzisiek')
 	print(player.name, player.max_hp, player.damage, player.alive, player.specialisation, player.exp, player.level, player.next_level)
 	player.exp += 800
