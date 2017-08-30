@@ -21,7 +21,8 @@ class Player(Character):
 	def check_level(self):
 		if self.exp >= self.next_level:
 			self.levelup()
-			print('You just leveled up! You gain', self.hp_grow, 'hitpoints and', self.damage_grow, 'damage! Your current level is', self.level,'\n\n\n')
+			print(self.name, 'just leveled up!', self.name, 'gain', self.hp_grow, 'hitpoints and', self.damage_grow, 'damage!', self.name, end='')
+			print("'s current level is", self.level,'\n\n\n')
 			self.check_level()
 			
 	def levelup(self):
