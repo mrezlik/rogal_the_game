@@ -22,7 +22,7 @@ def print_board(board):
 
 
 def take_item(inv):
-    loots = [["Laser gun"], ["Lightsaber"], ["First Aid Kit"], ["Shield"]]
+    loots = [{"Laser gun": ["weapon", 10, 1]}, {"Lightsaber": ["weapon", 3, 1]}, {"Shield": ["armor", 4, 1]}]
     loot = random.randint(0, len(loots)-1)
     return add_to_inventory(inv, loots[loot])
 

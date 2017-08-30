@@ -18,7 +18,7 @@ def main():
     map_one = create_board()
     player_position = (9, 44)
     x = None
-    inv = {"Gold": 0}
+    inv = {"Gold": ["coins", 1, 1]}
     while not(x == 'q'):
         x = None
         os.system('clear')

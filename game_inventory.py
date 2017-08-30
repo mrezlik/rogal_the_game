@@ -5,24 +5,19 @@ import os
 
 # Adds to the inventory dictionary a list of items from added_items.
 def add_to_inventory(inventory, added_items):
-    for i in range(0, len(added_items)):
-        if added_items[i] in inventory:
-            inventory[added_items[i]] += 1
-        else:
-            inventory[added_items[i]] = 1
+    inventory.update(added_items)
     return inventory
 
 
 def print_table(inventory, order="count,desc"):
     longest_item_name = max(len(x) for x in inventory)  # length of max keys in inventory
-    frame = longest_item_name + 8
-    print('{0:>7}\t{1:>{longest}} '.format('count', 'item name', longest=longest_item_name))
+    frame = longest_item_name + 40
+    print('{0}{1}{longest}{2}{3}{4}{5}'.format('Type', 'Weight','\t', 'Item Name', "\t", "How Many", longest=longest_item_name))
     print('-' * frame)
     if order == 'count,desc':
         for key, value in sorted(inventory.items(), key=lambda x: x[1], reverse=True):   # lambda return x[1]
-            print('{0:>7}\t{1:>{longest}}'.format(value, key, longest=longest_item_name))
+            print(value[0],"\t",value[1],"\t", key, "\t\t", value[2])
     print('-' * frame)
-    print('Total number of items: ', sum(inventory.values()))
 
 
 # Imports new inventory items from a file
