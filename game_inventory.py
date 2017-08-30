@@ -14,17 +14,3 @@ def print_table(inventory, order="count,desc"):
 		for key, value in sorted(inventory.items(), key=lambda x: x[1], reverse=True):   # lambda return x[1]
 			print(value[0],"\t",value[1],"\t", key, "\t\t", value[2])
 	print('-' * frame)
-
-
-def import_inventory(inventory, filename="inventory.csv"):
-	with open(filename) as f:
-		inventory_from_file = f.read().split(',')
-	inventory_from_file = list(filter(None, inventory_from_file))  # remove empty item
-	add_to_inventory(inventory, inventory_from_file)  # add imported inventory
-
-
-def export_inventory(inventory, filename="inventory.csv"):
-	os.remove(filename)  # remove file if it exist
-	with open(filename, "a") as f:
-		for key, value in inventory.items():
-			f.write('{},'.format(key) * value)  # write to key values time to file
