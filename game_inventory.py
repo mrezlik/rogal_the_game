@@ -1,5 +1,3 @@
-import os
-
 def add_to_inventory(inventory, added_items):
 	inventory.update(added_items)
 	return inventory
