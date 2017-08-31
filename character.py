@@ -14,6 +14,8 @@ class Player(Character):
 	next_level = 100
 	weapon_bonus = 1
 	enemies_killed = 0
+	coordinate_x = 44
+	coordinate_y = 9
 	
 	def __init__(self, name):
 		self.name = name

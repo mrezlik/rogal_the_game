@@ -28,118 +28,120 @@ def take_item(inv):
     return add_to_inventory(inv, loots[loot])
 
 
-def colision(player, inv, board, player_coordinate_y, player_coordinate_x, command=None, board_width=86, board_height=21):
+def colision(player, inv, board, command=None, board_width=86, board_height=21):
 	if command == 'w':
-		if player_coordinate_y == 1:
+		if player.coordinate_y == 1:
 			pass
 		else:
-			if board[player_coordinate_y - 1][player_coordinate_x] == 'X':
+			if board[player.coordinate_y - 1][player.coordinate_x] == 'X':
 				pass
-			elif board[player_coordinate_y - 1][player_coordinate_x] == '#':
+			elif board[player.coordinate_y - 1][player.coordinate_x] == '#':
 				inv = take_item(inv)
-			elif board[player_coordinate_y - 1][player_coordinate_x] == '%':
-				fight(player, player_coordinate_y - 1, player_coordinate_x)
+			elif board[player.coordinate_y - 1][player.coordinate_x] == '%':
+				fight(player, player.coordinate_y - 1, player.coordinate_x)
 				if player.enemies_killed == 5:
 					board = create_board('map_2.txt')
+					change_player_position(board, 16, 65)
 				
 			else:
-				board[player_coordinate_y - 1][player_coordinate_x] = '@'
-				board[player_coordinate_y][player_coordinate_x] = ' '
+				board[player.coordinate_y - 1][player.coordinate_x] = '@'
+				board[player.coordinate_y][player.coordinate_x] = ' '
 	elif command == 'a':
-		if player_coordinate_x == 1:
+		if player.coordinate_x == 1:
 			pass
 		else:
-			if board[player_coordinate_y][player_coordinate_x - 1] == 'X':
+			if board[player.coordinate_y][player.coordinate_x - 1] == 'X':
 				pass
-			elif board[player_coordinate_y][player_coordinate_x - 1] == '#':
+			elif board[player.coordinate_y][player.coordinate_x - 1] == '#':
 				inv = take_item(inv)
-			elif board[player_coordinate_y][player_coordinate_x - 1] == '%':
-				fight(player, player_coordinate_y, player_coordinate_x - 1)
+			elif board[player.coordinate_y][player.coordinate_x - 1] == '%':
+				fight(player, player.coordinate_y, player.coordinate_x - 1)
 				if player.enemies_killed == 5:
 					board = create_board('map_2.txt')
+					change_player_position(board, 16, 65)
 			else:
-				board[player_coordinate_y][player_coordinate_x - 1] = '@'
-				board[player_coordinate_y][player_coordinate_x] = ' '
+				board[player.coordinate_y][player.coordinate_x - 1] = '@'
+				board[player.coordinate_y][player.coordinate_x] = ' '
 	elif command == 's':
-		if player_coordinate_y == board_height - 1:
+		if player.coordinate_y == board_height - 1:
 			pass
 		else:
-			if board[player_coordinate_y + 1][player_coordinate_x] == 'X':
+			if board[player.coordinate_y + 1][player.coordinate_x] == 'X':
 				pass
-			elif board[player_coordinate_y + 1][player_coordinate_x] == '#':
+			elif board[player.coordinate_y + 1][player.coordinate_x] == '#':
 				inv = take_item(inv)
-			elif board[player_coordinate_y + 1][player_coordinate_x] == '%':
-				fight(player, player_coordinate_y + 1, player_coordinate_x)
+			elif board[player.coordinate_y + 1][player.coordinate_x] == '%':
+				fight(player, player.coordinate_y + 1, player.coordinate_x)
 				if player.enemies_killed == 5:
 					board = create_board('map_2.txt')
 			else:
-				board[player_coordinate_y + 1][player_coordinate_x] = '@'
-				board[player_coordinate_y][player_coordinate_x] = ' '
+				board[player.coordinate_y + 1][player.coordinate_x] = '@'
+				board[player.coordinate_y][player.coordinate_x] = ' '
 	elif command == 'd':
-		if player_coordinate_x == board_width - 1:
+		if player.coordinate_x == board_width - 1:
 			pass
 		else:
-			if board[player_coordinate_y][player_coordinate_x + 1] == 'X':
+			if board[player.coordinate_y][player.coordinate_x + 1] == 'X':
 				pass
-			elif board[player_coordinate_y][player_coordinate_x + 1] == '#':
+			elif board[player.coordinate_y][player.coordinate_x + 1] == '#':
 				inv = take_item(inv)
-			elif board[player_coordinate_y][player_coordinate_x + 1] == '%':
-				fight(player, player_coordinate_y, player_coordinate_x + 1)
+			elif board[player.coordinate_y][player.coordinate_x + 1] == '%':
+				fight(player, player.coordinate_y, player.coordinate_x + 1)
 				if player.enemies_killed == 5:
 					board = create_board('map_2.txt')
 			else:
-				board[player_coordinate_y][player_coordinate_x + 1] = '@'
-				board[player_coordinate_y][player_coordinate_x] = ' '
+				board[player.coordinate_y][player.coordinate_x + 1] = '@'
+				board[player.coordinate_y][player.coordinate_x] = ' '
 	return board, inv
 
 
-def change_player_position(board, player_coordinate_y, player_coordinate_x, command=None, board_width=86, board_height=21):
+def change_player_position(player, board, command=None, board_width=86, board_height=21):
     if command == 'w':
-        if player_coordinate_y == 1:
+        if player.coordinate_y == 1:
             pass
         else:
-            if board[player_coordinate_y - 1][player_coordinate_x] == 'X':
+            if board[player.coordinate_y - 1][player.coordinate_x] == 'X':
                 pass
-            elif board[player_coordinate_y -1][player_coordinate_x] == '#':
-                board[player_coordinate_y -1][player_coordinate_x] = ' '
-            elif board[player_coordinate_y -1][player_coordinate_x] == '%':
-                board[player_coordinate_y -1][player_coordinate_x] = ' '
+            elif board[player.coordinate_y -1][player.coordinate_x] == '#':
+                board[player.coordinate_y -1][player.coordinate_x] = ' '
+            elif board[player.coordinate_y -1][player.coordinate_x] == '%':
+                board[player.coordinate_y -1][player.coordinate_x] = ' '
             else:
-                player_coordinate_y = player_coordinate_y - 1
+                player.coordinate_y = player.coordinate_y - 1
     elif command == 'a':
-        if player_coordinate_x == 1:
+        if player.coordinate_x == 1:
             pass
         else:
-            if board[player_coordinate_y][player_coordinate_x - 1] == 'X':
+            if board[player.coordinate_y][player.coordinate_x - 1] == 'X':
                 pass
-            elif board[player_coordinate_y][player_coordinate_x - 1] == '#':
-                board[player_coordinate_y][player_coordinate_x - 1] = ' '
-            elif board[player_coordinate_y][player_coordinate_x - 1] == '%':
-                board[player_coordinate_y][player_coordinate_x - 1] = ' '
+            elif board[player.coordinate_y][player.coordinate_x - 1] == '#':
+                board[player.coordinate_y][player.coordinate_x - 1] = ' '
+            elif board[player.coordinate_y][player.coordinate_x - 1] == '%':
+                board[player.coordinate_y][player.coordinate_x - 1] = ' '
             else:
-                player_coordinate_x = player_coordinate_x - 1
+                player.coordinate_x = player.coordinate_x - 1
     elif command == 's':
-        if player_coordinate_y == board_height - 1:
+        if player.coordinate_y == board_height - 1:
             pass
         else:
-            if board[player_coordinate_y + 1][player_coordinate_x] == 'X':
+            if board[player.coordinate_y + 1][player.coordinate_x] == 'X':
                 pass
-            elif board[player_coordinate_y + 1][player_coordinate_x] == '#':
-                board[player_coordinate_y + 1][player_coordinate_x] = ' '
-            elif board[player_coordinate_y + 1][player_coordinate_x] == '%':
-                board[player_coordinate_y + 1][player_coordinate_x] = ' '
+            elif board[player.coordinate_y + 1][player.coordinate_x] == '#':
+                board[player.coordinate_y + 1][player.coordinate_x] = ' '
+            elif board[player.coordinate_y + 1][player.coordinate_x] == '%':
+                board[player.coordinate_y + 1][player.coordinate_x] = ' '
             else:
-                player_coordinate_y = player_coordinate_y + 1
+                player.coordinate_y = player.coordinate_y + 1
     elif command == 'd':
-        if player_coordinate_x == board_width - 1:
+        if player.coordinate_x == board_width - 1:
             pass
         else:
-            if board[player_coordinate_y][player_coordinate_x + 1] == 'X':
+            if board[player.coordinate_y][player.coordinate_x + 1] == 'X':
                 pass
-            elif board[player_coordinate_y][player_coordinate_x + 1] == '#':
-                board[player_coordinate_y][player_coordinate_x + 1] = ' '
-            elif board[player_coordinate_y][player_coordinate_x + 1] == '%':
-                board[player_coordinate_y][player_coordinate_x + 1] = ' '
+            elif board[player.coordinate_y][player.coordinate_x + 1] == '#':
+                board[player.coordinate_y][player.coordinate_x + 1] = ' '
+            elif board[player.coordinate_y][player.coordinate_x + 1] == '%':
+                board[player.coordinate_y][player.coordinate_x + 1] = ' '
             else:
-                player_coordinate_x = player_coordinate_x + 1
-    return (player_coordinate_y, player_coordinate_x)
+                player.coordinate_x = player.coordinate_x + 1
+    return (player.coordinate_y, player.coordinate_x)
