@@ -13,6 +13,7 @@ class Player(Character):
 	level = 1
 	next_level = 100
 	weapon_bonus = 1
+	enemies_killed = 0
 	
 	def __init__(self, name):
 		self.name = name

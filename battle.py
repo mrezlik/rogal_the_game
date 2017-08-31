@@ -28,6 +28,7 @@ def fight(player, x, y):
 			player.bio_heal()
 			print('Your HP:', player.current_hp)
 			print(player.name, 'gain', monster.exp, 'experience points!\n\n\n')
+			player.enemies_killed += 1
 			player.exp += monster.exp
 			player.check_level()
 
