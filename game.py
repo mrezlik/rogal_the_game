@@ -1,7 +1,8 @@
 import os
 import time
-from controls import getch
-from map import create_board, print_board, colision
+import random
+from controls import getch, movement
+from map import create_board, print_board
 from introduction import print_logo, story
 from battle import fight
 from hall_of_fame import write_result, print_hall, clear
@@ -27,14 +28,14 @@ def main():
 		os.system('clear')
 		print_board(current_map)
 		x = getch()
-		return_from_colision = colision(player, inv, current_map, x)
+		movement_return = movement(player, inv, current_map, x)
 		if x == "i":
 			print_table(inv)
 			x = None
 			while not x:
 				x = getch()
-		current_map = return_from_colision[0]
-		inv = return_from_colision[1]
+		current_map = movement_return[0]
+		inv = movement_return[1]
 
 
 if __name__ == '__main__':
