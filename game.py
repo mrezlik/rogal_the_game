@@ -24,8 +24,11 @@ def main():
 	inv = {}
 	feedback = ''
 	while not(x == 'q'):
+		if not player.alive:
+			lose(player)
 		x = None
 		os.system('clear')
+		print(player.alive)
 		print_board(current_map)
 		print(feedback)
 		x = getch()

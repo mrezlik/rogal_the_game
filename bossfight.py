@@ -1,6 +1,7 @@
 import os
 import random
 from hotwarmcold import game, generate_answer, check_answer, print_hint
+from winlosescreen import win
 
 def bossfight(player):
 	answer = generate_answer()
@@ -14,9 +15,13 @@ def bossfight(player):
 			print(x, end="")
 	print('')
 	while True:
+		print(player.alive)
 		guess_count = game(answer, guess_count)
-		if guess_count == 0:
+		if guess_count == 0 or guess_count == 100:
+			player.alive = False
 			break
+	if not guess_count == 0:
+		win(player)
 
 
 def main():

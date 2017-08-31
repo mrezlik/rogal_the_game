@@ -1,4 +1,9 @@
-def lose():
+import os
+import time
+from hall_of_fame import write_result, print_hall, clear
+
+def lose(player):
+	os.system('clear')
 	print(
 		"""
 		 /$$     /$$ /$$$$$$  /$$   /$$       /$$        /$$$$$$   /$$$$$$  /$$$$$$$$
@@ -11,9 +16,15 @@ def lose():
 		    |__/    \______/  \______/       |________/ \______/  \______/ |________/
 
 		""")
+	elapsed_time = time.time() - player.start_time
+	print('\n\n\nYou died after', round(elapsed_time, 2), 'seconds!')
+	print('\n\n\nHall of fame:')
+	print_hall()
+	quit()
+	
 
-
-def win():
+def win(player):
+	os.system('clear')
 	print(
 		"""
 		 /$$     /$$ /$$$$$$  /$$   /$$       /$$      /$$ /$$$$$$ /$$   /$$
@@ -25,3 +36,7 @@ def win():
 		    | $$   |  $$$$$$/|  $$$$$$/      | $$/   \  $$ /$$$$$$| $$ \  $$
 		    |__/    \______/  \______/       |__/     \__/|______/|__/  \__/
 		    """)
+	write_result(player)
+	print('Hall of fame:')
+	print_hall()
+	quit()

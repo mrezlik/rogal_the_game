@@ -1,4 +1,5 @@
 from controls import getch
+import time
 
 class Character:
 	
@@ -14,13 +15,14 @@ class Player(Character):
 	strongest_monster_killed = 'You did not killed anything!'
 	level = 1
 	next_level = 100
-	enemies_killed = 0
+	enemies_killed = 23
 	coordinate_x = 44
 	coordinate_y = 9
 	
 	def __init__(self, name):
 		self.name = name
 		self.choose_specialisation()
+		self.start_time = time.time()
 	
 	def check_level(self):
 		if self.exp >= self.next_level:

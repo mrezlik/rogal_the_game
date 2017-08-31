@@ -8,7 +8,7 @@ def game(answer, guess_count):
 		
 	if hint == ["hot", "hot", "hot"]:
 		print("good job")
-		return False
+		return 100
 		
 	guess_count -= 1
 	if guess_count == 0:
