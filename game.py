@@ -2,7 +2,7 @@ import os
 import time
 from controls import getch, movement
 from map import create_board, print_board
-from introduction import print_logo, story
+from introduction import print_logo, story, about
 from battle import fight
 from hall_of_fame import write_result, print_hall, clear
 from character import Character, Enemy, Player
@@ -13,7 +13,10 @@ from winlosescreen import win, lose
 def main():
 	os.system('clear')
 	print_logo()
-	time.sleep(1)
+	x = None
+	while not(x == "c"):
+		about()
+		x = getch()
 	story()
 	x = None
 	while not x:
