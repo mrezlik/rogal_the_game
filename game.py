@@ -27,8 +27,12 @@ def main():
 		x = None
 		os.system('clear')
 		print_board(current_map)
-		print_table(inv)
 		x = getch()
+		if x == "i":
+			print_table(inv)
+			x = None
+			while not x:
+				x = getch()
 		return_from_colision = colision(player, inv, current_map, player_position[0], player_position[1], x)
 		current_map = return_from_colision[0]
 		inv = return_from_colision[1]
