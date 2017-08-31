@@ -30,7 +30,7 @@ def movement(player, inv, board, command=None, board_width=86, board_height=21):
 				board[player.coordinate_y -1][player.coordinate_x] = ' '
 				feedback = 'You have picked up the ' + result[1]
 			elif board[player.coordinate_y - 1][player.coordinate_x] == '%':
-				fight(player, player.coordinate_y - 1, player.coordinate_x)
+				fight(player, player.coordinate_y - 1, player.coordinate_x, inv)
 				if player.enemies_killed == 9:
 					board = create_board('map_2.txt')
 					player.coordinate_x = 64
@@ -52,7 +52,7 @@ def movement(player, inv, board, command=None, board_width=86, board_height=21):
 				board[player.coordinate_y][player.coordinate_x - 1] = ' '
 				feedback = 'You have picked up the ' + result[1]
 			elif board[player.coordinate_y][player.coordinate_x - 1] == '%':
-				fight(player, player.coordinate_y, player.coordinate_x - 1)
+				fight(player, player.coordinate_y, player.coordinate_x - 1, inv)
 				if player.enemies_killed == 9:
 					board = create_board('map_2.txt')
 					player.coordinate_x = 64
@@ -74,7 +74,7 @@ def movement(player, inv, board, command=None, board_width=86, board_height=21):
 				board[player.coordinate_y + 1][player.coordinate_x] = ' '
 				feedback = 'You have picked up the ' + result[1]
 			elif board[player.coordinate_y + 1][player.coordinate_x] == '%':
-				fight(player, player.coordinate_y + 1, player.coordinate_x)
+				fight(player, player.coordinate_y + 1, player.coordinate_x, inv)
 				if player.enemies_killed == 9:
 					board = create_board('map_2.txt')
 					player.coordinate_x = 64
@@ -96,7 +96,7 @@ def movement(player, inv, board, command=None, board_width=86, board_height=21):
 				board[player.coordinate_y][player.coordinate_x + 1] = ' '
 				feedback = 'You have picked up the ' + result[1]
 			elif board[player.coordinate_y][player.coordinate_x + 1] == '%':
-				fight(player, player.coordinate_y, player.coordinate_x + 1)
+				fight(player, player.coordinate_y, player.coordinate_x + 1, inv)
 				if player.enemies_killed == 9:
 					board = create_board('map_2.txt')
 					player.coordinate_x = 64

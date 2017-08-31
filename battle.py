@@ -3,7 +3,7 @@ from character import Character, Enemy, Player
 from winlosescreen import win, lose
 from controls import getch
 
-def fight(player, x, y):
+def fight(player, x, y, inv):
 	
 	os.system('clear')
 	
@@ -20,13 +20,44 @@ def fight(player, x, y):
 	else:
 		monster = Enemy('Mutated Rat', 20, 1, 100)
 	
-	char = None
 	print(player.name, 'have encounter the', monster.name, end='')
 	print(', fight is inevitable!')
+	
+	for key in inv.items():
+		player.use_item(key[0])
+		
+	char = None
 	player.sneak_attack(monster)
+	if monster.hp <= 0:
+		print(player.name, 'killed the', monster.name, end='')
+		print('!')
+		player.bio_heal()
+		print('Your HP:', player.current_hp)
+		print(player.name, 'gain', monster.exp, 'experience points!\n\n\n')
+		player.enemies_killed += 1
+		player.exp += monster.exp
+		player.check_level()
+		if '|' not in player.strongest_monster_killed:
+			player.strongest_monster_killed = monster.name + '|' + ' ' * (5 - len(str(monster.exp))) + str(monster.exp)
+		else:
+			if monster.exp > int(player.strongest_monster_killed[-5:]):
+				player.strongest_monster_killed = monster.name + '|' + ' ' * (5 - len(str(monster.exp))) + str(monster.exp)
+		for key in inv.items():
+			player.unequip_item(key)
+		print('\n\n\nFight is over, for now...')
+		print('Press c to continue')
+		while not char == 'c':
+			char = getch()
+			
+		return None
 	turn_counter = 0
 	while True:
 		
+		turn_counter += 1
+		print('\nTurn', turn_counter, 'Your HP:', player.current_hp)
+		print(player.name, 'attack the', monster.name, 'for', player.damage, 'damage!')
+		monster.hp -= player.damage
+
 		if monster.hp <= 0:
 			print(player.name, 'killed the', monster.name, end='')
 			print('!')
@@ -36,30 +67,28 @@ def fight(player, x, y):
 			player.enemies_killed += 1
 			player.exp += monster.exp
 			player.check_level()
-
 			if '|' not in player.strongest_monster_killed:
 				player.strongest_monster_killed = monster.name + '|' + ' ' * (5 - len(str(monster.exp))) + str(monster.exp)
 			else:
 				if monster.exp > int(player.strongest_monster_killed[-5:]):
 					player.strongest_monster_killed = monster.name + '|' + ' ' * (5 - len(str(monster.exp))) + str(monster.exp)
-			
-			while not char:
+			for key in inv.items():
+				player.unequip_item(key)
+			print('\n\n\nFight is over, for now...')
+			print('Press c to continue')
+			while not char == 'c':
 				char = getch()
+			
 			return None
-
-		turn_counter += 1
-		print('\nTurn', turn_counter, 'Your HP:', player.current_hp)
-		print(player.name, 'attack the', monster.name, 'for', player.damage, 'damage!')
-		monster.hp -= player.damage
-
 		
 		print(monster.name, 'attack', player.name, 'for', monster.damage, 'damage!')
 		player.current_hp -= monster.damage
 
 		if player.current_hp <= 0:
 			print(monster.name, 'killed', player.name, 'U succ!\n\n\n')
+			print('Press c to continue')
 			player.alive = False
-			while not char:
+			while not char == 'c':
 				char = getch()
 			return None
 

@@ -1,3 +1,5 @@
+from controls import getch
+
 class Character:
 	
 	alive = True
@@ -12,7 +14,6 @@ class Player(Character):
 	strongest_monster_killed = 'You did not killed anything!'
 	level = 1
 	next_level = 100
-	weapon_bonus = 1
 	enemies_killed = 0
 	coordinate_x = 44
 	coordinate_y = 9
@@ -49,7 +50,7 @@ class Player(Character):
 			self.hp_grow = 38
 			self.damage = 5
 			self.damage_grow = 3
-			self.weapon_specialist = True
+			self.weapon_bonus = 2
 			self.biotic_regeneration = False
 			self.cloaking_field = False
 		if choice == '2':
@@ -59,7 +60,7 @@ class Player(Character):
 			self.hp_grow = 25
 			self.damage = 10
 			self.damage_grow = 5
-			self.weapon_specialist = False
+			self.weapon_bonus = 1
 			self.biotic_regeneration = True
 			self.cloaking_field = False
 		if choice == '3':
@@ -69,7 +70,7 @@ class Player(Character):
 			self.hp_grow = 13
 			self.damage = 15
 			self.damage_grow = 8
-			self.weapon_specialist = False
+			self.weapon_bonus = 1
 			self.biotic_regeneration = False
 			self.cloaking_field = True
 			
@@ -87,6 +88,46 @@ class Player(Character):
 		if self.cloaking_field == True:
 			print('Cloaking field activated!', self.name, 'attack the', monster.name, 'for', self.damage, 'damage!')
 			monster.hp -= self.damage
+			
+			
+	def use_item(self, item):
+		char = None
+		if 'Lightsaber' in item:
+			print('Using', item, 'grants', 20 * self.weapon_bonus, 'damage in combat')
+			self.damage += (20 * self.weapon_bonus)
+			while not char == 'c':
+				char = getch()
+		elif 'First aid kit' in item:
+			print('Using', item, 'heals', int(self.max_hp * 0.5), 'hitpoints')
+			self.current_hp += int(self.max_hp * 0.5)
+			if self.current_hp > self.max_hp:
+				self.current_hp = self.max_hp
+			while not char == 'c':
+				char = getch()
+		elif 'Shield' in item:
+			print('Using', item, 'grants', 50, 'bonus to max hitpoints')
+			self.max_hp += 50
+			self.current_hp += 50
+			while not char == 'c':
+				char = getch()
+				
+			
+	def unequip_item(self, item):
+		char = None
+		if 'Lightsaber' in item:
+			print(self.name, 'puts', item, 'in backpack')
+			self.damage -= (5 * self.weapon_bonus)
+			print('Press c to continue')
+			while not char == 'c':
+				char = getch()
+		elif 'Shield' in item:
+			print(self.name, 'puts', item, 'in backpack')
+			self.max_hp -= 50
+			self.current_hp -= 50
+			print('Press c to continue')
+			while not char == 'c':
+				char = getch()
+		
 
 
 class Enemy(Character):

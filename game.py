@@ -21,7 +21,7 @@ def main():
 	os.system('clear')
 	player = Player(input('Name your hero:'))
 	current_map = create_board('map_1.txt')
-	inv = {"gold": ["coin", 10, 1]}
+	inv = {}
 	feedback = ''
 	while not(x == 'q'):
 		x = None
