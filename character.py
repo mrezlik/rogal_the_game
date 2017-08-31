@@ -101,13 +101,11 @@ class Player(Character):
 			while not char == 'c':
 				char = getch()
 		elif 'First aid kit' in item:
-			print('Using', item, 'heals', int(self.max_hp * 0.5), 'hitpoints')
+			print('Using first aid kit heals', int(self.max_hp * 0.5), 'hitpoints')
 			self.current_hp += int(self.max_hp * 0.5)
 			if self.current_hp > self.max_hp:
 				self.current_hp = self.max_hp
 			print('Press c to continue')
-			while not char == 'c':
-				char = getch()
 		elif 'Shield' in item:
 			print(self.name, 'equips the', item, 'grants', 50, 'bonus to max hitpoints')
 			self.max_hp += 50
@@ -120,13 +118,13 @@ class Player(Character):
 	def unequip_item(self, item):
 		char = None
 		if 'Lightsaber' in item:
-			print(self.name, 'puts', item, 'in backpack')
+			print(self.name, 'puts Lightsaber in backpack')
 			self.damage -= (5 * self.weapon_bonus)
 			print('Press c to continue')
 			while not char == 'c':
 				char = getch()
 		elif 'Shield' in item:
-			print(self.name, 'puts', item, 'in backpack')
+			print(self.name, 'puts Shield in backpack')
 			self.max_hp -= 50
 			self.current_hp -= 50
 			print('Press c to continue')
