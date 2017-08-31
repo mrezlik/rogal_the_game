@@ -1,7 +1,7 @@
 import random
 
 def game(answer, guess_count):
-	print(answer, guess_count)
+	print('You have', guess_count, 'more chances', answer)
 	guess = input("What is the number?")
 	hint = check_answer(answer, guess)
 	print_hint(hint)

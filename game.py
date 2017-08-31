@@ -39,6 +39,14 @@ def new_game():
 			x = None
 			while not x == 'c':
 				x = getch()
+		if x == "m":
+			if 'First aid kit' in inv:
+				player.use_item('First aid kit')
+			else:
+				print('You do not own the first aid kit')
+			x = None
+			while not x == 'c':
+				x = getch()
 		current_map = movement_return[0]
 		inv = movement_return[1]
 		feedback = movement_return[2]

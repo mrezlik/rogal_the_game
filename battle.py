@@ -3,22 +3,26 @@ from character import Character, Enemy, Player
 from winlosescreen import win, lose
 from controls import getch
 
-def fight(player, x, y, inv):
+def fight(player, y, x, inv):
 	
 	os.system('clear')
 	
-	if [x, y] == [12, 7]:
+	if [y, x] == [12, 7]:
 		monster = Enemy('Mutated Rat', 20, 1, 100)
-	elif [x, y] == [1, 27]:
-		monster = Enemy('Alien', 50, 15, 150)
-	elif [x, y] == [4, 64]:
+	elif [y, x] == [1, 27]:
 		monster = Enemy('Mutated Rat', 20, 1, 100)
-	elif [x, y] == [8, 13]:
+	elif [y, x] == [4, 64]:
+		monster = Enemy('Mutated Rat', 20, 1, 100)
+	elif [y, x] == [8, 13]:
 		monster = Enemy('Robot', 80, 5, 200)
-	elif [x, y] == [16,71]:
-		monster = Enemy('Alien', 50, 15, 150)
+	elif [y, x] == [8, 56]:
+		monster = Enemy('Robot', 80, 5, 200)
+	elif [y, x] == [4, 67]:
+		monster = Enemy('Robot', 80, 5, 200)
+	elif [y, x] == [1, 23]:
+		monster = Enemy('Robot', 80, 5, 200)
 	else:
-		monster = Enemy('Mutated Rat', 20, 1, 100)
+		monster = Enemy('Alien', 50, 15, 150)
 	
 	print(player.name, 'have encounter the', monster.name, end='')
 	print(', fight is inevitable!')
@@ -43,15 +47,10 @@ def fight(player, x, y, inv):
 		else:
 			if monster.exp > int(player.strongest_monster_killed[-5:]):
 				player.strongest_monster_killed = monster.name + '|' + ' ' * (5 - len(str(monster.exp))) + str(monster.exp)
+		
 		for key in inv.items():
 			player.unequip_item(key[0])
-		for key in inv.items():
-			if key[0] == 'First aid kit' :
-				print('Do you want to use first aid kit? Yes: y No: n')
-				while not char == 'n'or char == 'y':
-					char = getch()
-				if char == 'y':
-					player.use_item(key[0])
+				
 		print('\n\n\nFight is over, for now...')
 		print('Press c to continue')
 		char = None

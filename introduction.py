@@ -38,7 +38,7 @@ def about():
 
 def help_controls():
 	print("""	Use WSAD to move you character. To open inventory press "i",
-	to open help press "h". If you want to quit just press "q".
+	to open help press "h", to heal yourself press "m" If you want to quit just press "q".
 	"#" are the items which you can take!
 	"%" are your enemies. You must kill all of them to go on the next level
 	"X" are a wall
