@@ -39,6 +39,9 @@ def colision(player, inv, board, player_coordinate_y, player_coordinate_x, comma
 				inv = take_item(inv)
 			elif board[player_coordinate_y - 1][player_coordinate_x] == '%':
 				fight(player, player_coordinate_y - 1, player_coordinate_x)
+				if player.enemies_killed == 5:
+					board = create_board('map_2.txt')
+				
 			else:
 				board[player_coordinate_y - 1][player_coordinate_x] = '@'
 				board[player_coordinate_y][player_coordinate_x] = ' '
@@ -52,6 +55,8 @@ def colision(player, inv, board, player_coordinate_y, player_coordinate_x, comma
 				inv = take_item(inv)
 			elif board[player_coordinate_y][player_coordinate_x - 1] == '%':
 				fight(player, player_coordinate_y, player_coordinate_x - 1)
+				if player.enemies_killed == 5:
+					board = create_board('map_2.txt')
 			else:
 				board[player_coordinate_y][player_coordinate_x - 1] = '@'
 				board[player_coordinate_y][player_coordinate_x] = ' '
@@ -65,6 +70,8 @@ def colision(player, inv, board, player_coordinate_y, player_coordinate_x, comma
 				inv = take_item(inv)
 			elif board[player_coordinate_y + 1][player_coordinate_x] == '%':
 				fight(player, player_coordinate_y + 1, player_coordinate_x)
+				if player.enemies_killed == 5:
+					board = create_board('map_2.txt')
 			else:
 				board[player_coordinate_y + 1][player_coordinate_x] = '@'
 				board[player_coordinate_y][player_coordinate_x] = ' '
@@ -78,6 +85,8 @@ def colision(player, inv, board, player_coordinate_y, player_coordinate_x, comma
 				inv = take_item(inv)
 			elif board[player_coordinate_y][player_coordinate_x + 1] == '%':
 				fight(player, player_coordinate_y, player_coordinate_x + 1)
+				if player.enemies_killed == 5:
+					board = create_board('map_2.txt')
 			else:
 				board[player_coordinate_y][player_coordinate_x + 1] = '@'
 				board[player_coordinate_y][player_coordinate_x] = ' '
