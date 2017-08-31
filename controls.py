@@ -13,6 +13,11 @@ def getch():
 
 
 def movement(player, inv, board, command=None, board_width=86, board_height=21):
+	import random
+	from battle import fight
+	from map import take_item
+	
+	feedback = ''
 	if command == 'w':
 		if player.coordinate_y == 1:
 			pass
@@ -20,8 +25,10 @@ def movement(player, inv, board, command=None, board_width=86, board_height=21):
 			if board[player.coordinate_y - 1][player.coordinate_x] == 'X':
 				pass
 			elif board[player.coordinate_y - 1][player.coordinate_x] == '#':
-				inv = take_item(inv)
+				result = take_item(inv)
+				inv = result[0]
 				board[player.coordinate_y -1][player.coordinate_x] = ' '
+				feedback = 'You have picked up the ' + result[1]
 			elif board[player.coordinate_y - 1][player.coordinate_x] == '%':
 				fight(player, player.coordinate_y - 1, player.coordinate_x)
 				if player.enemies_killed == 9:
@@ -40,8 +47,10 @@ def movement(player, inv, board, command=None, board_width=86, board_height=21):
 			if board[player.coordinate_y][player.coordinate_x - 1] == 'X':
 				pass
 			elif board[player.coordinate_y][player.coordinate_x - 1] == '#':
-				inv = take_item(inv)
+				result = take_item(inv)
+				inv = result[0]
 				board[player.coordinate_y][player.coordinate_x - 1] = ' '
+				feedback = 'You have picked up the ' + result[1]
 			elif board[player.coordinate_y][player.coordinate_x - 1] == '%':
 				fight(player, player.coordinate_y, player.coordinate_x - 1)
 				if player.enemies_killed == 9:
@@ -60,8 +69,10 @@ def movement(player, inv, board, command=None, board_width=86, board_height=21):
 			if board[player.coordinate_y + 1][player.coordinate_x] == 'X':
 				pass
 			elif board[player.coordinate_y + 1][player.coordinate_x] == '#':
-				inv = take_item(inv)
+				result = take_item(inv)
+				inv = result[0]
 				board[player.coordinate_y + 1][player.coordinate_x] = ' '
+				feedback = 'You have picked up the ' + result[1]
 			elif board[player.coordinate_y + 1][player.coordinate_x] == '%':
 				fight(player, player.coordinate_y + 1, player.coordinate_x)
 				if player.enemies_killed == 9:
@@ -80,8 +91,10 @@ def movement(player, inv, board, command=None, board_width=86, board_height=21):
 			if board[player.coordinate_y][player.coordinate_x + 1] == 'X':
 				pass
 			elif board[player.coordinate_y][player.coordinate_x + 1] == '#':
-				inv = take_item(inv)
+				result = take_item(inv)
+				inv = result[0]
 				board[player.coordinate_y][player.coordinate_x + 1] = ' '
+				feedback = 'You have picked up the ' + result[1]
 			elif board[player.coordinate_y][player.coordinate_x + 1] == '%':
 				fight(player, player.coordinate_y, player.coordinate_x + 1)
 				if player.enemies_killed == 9:
@@ -93,5 +106,5 @@ def movement(player, inv, board, command=None, board_width=86, board_height=21):
 				board[player.coordinate_y][player.coordinate_x + 1] = '@'
 				board[player.coordinate_y][player.coordinate_x] = ' '
 				player.coordinate_x += 1
-	return board, inv
+	return board, inv, feedback
 

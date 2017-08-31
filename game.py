@@ -1,6 +1,5 @@
 import os
 import time
-import random
 from controls import getch, movement
 from map import create_board, print_board
 from introduction import print_logo, story
@@ -23,10 +22,12 @@ def main():
 	player = Player(input('Name your hero:'))
 	current_map = create_board('map_1.txt')
 	inv = {"gold": ["coin", 10, 1]}
+	feedback = ''
 	while not(x == 'q'):
 		x = None
 		os.system('clear')
 		print_board(current_map)
+		print(feedback)
 		x = getch()
 		movement_return = movement(player, inv, current_map, x)
 		if x == "i":
@@ -36,6 +37,7 @@ def main():
 				x = getch()
 		current_map = movement_return[0]
 		inv = movement_return[1]
+		feedback = movement_return[2]
 
 
 if __name__ == '__main__':
