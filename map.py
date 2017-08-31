@@ -22,4 +22,7 @@ def take_item(inv):
     from game_inventory import add_to_inventory
     loots = [["Lightsaber", "weapon", 10, 1], ["Shield", "deffence item", 10, 1], ["First aid kit", "medicine", 4, 1]]
     loot = random.randint(0, len(loots)-1)
-    return add_to_inventory(inv, loots[loot]), loots[loot][0]
+    if loots[loot][0] not in inv:
+    	return add_to_inventory(inv, loots[loot]), loots[loot][0], True
+    else:
+    	return inv, loots[loot][0], False

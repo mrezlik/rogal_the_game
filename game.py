@@ -31,7 +31,6 @@ def main():
 			lose(player)
 		x = None
 		os.system('clear')
-		print(player.alive)
 		print_board(current_map)
 		print(feedback)
 		x = getch()

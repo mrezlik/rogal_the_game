@@ -24,7 +24,8 @@ def fight(player, x, y, inv):
 	print(', fight is inevitable!')
 	
 	for key in inv.items():
-		player.use_item(key[0])
+		if not key[0] == 'First aid kit' :
+			player.use_item(key[0])
 		
 	char = None
 	player.sneak_attack(monster)
@@ -43,7 +44,13 @@ def fight(player, x, y, inv):
 			if monster.exp > int(player.strongest_monster_killed[-5:]):
 				player.strongest_monster_killed = monster.name + '|' + ' ' * (5 - len(str(monster.exp))) + str(monster.exp)
 		for key in inv.items():
-			player.unequip_item(key)
+			player.unequip_item(key[0])
+		for key in inv.items():
+			if key[0] == 'First aid kit' :
+				print('Do you want to use first aid kit? y/n')
+				answer = input()
+				if answer == 'y':
+					player.use_item(key[0])
 		print('\n\n\nFight is over, for now...')
 		print('Press c to continue')
 		while not char == 'c':
