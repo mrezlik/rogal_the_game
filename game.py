@@ -22,7 +22,7 @@ def main():
 	player = Player(input('Name your hero:'))
 	current_map = create_board('map_1.txt')
 	player_position = (9, 44)
-	inv = {"Gold": ["coins", 1, 1]}
+	inv = {"gold": ["coin", 10, 1]}
 	while not(x == 'q'):
 		x = None
 		os.system('clear')
