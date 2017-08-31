@@ -15,7 +15,7 @@ class Player(Character):
 	strongest_monster_killed = 'You did not killed anything!'
 	level = 1
 	next_level = 100
-	enemies_killed = 23
+	enemies_killed = 0
 	coordinate_x = 44
 	coordinate_y = 9
 	
@@ -95,8 +95,9 @@ class Player(Character):
 	def use_item(self, item):
 		char = None
 		if 'Lightsaber' in item:
-			print('Using', item, 'grants', 20 * self.weapon_bonus, 'damage in combat')
+			print(self.name, 'equips the', item, 'grants', 20 * self.weapon_bonus, 'damage in combat')
 			self.damage += (20 * self.weapon_bonus)
+			print('Press c to continue')
 			while not char == 'c':
 				char = getch()
 		elif 'First aid kit' in item:
@@ -104,12 +105,14 @@ class Player(Character):
 			self.current_hp += int(self.max_hp * 0.5)
 			if self.current_hp > self.max_hp:
 				self.current_hp = self.max_hp
+			print('Press c to continue')
 			while not char == 'c':
 				char = getch()
 		elif 'Shield' in item:
-			print('Using', item, 'grants', 50, 'bonus to max hitpoints')
+			print(self.name, 'equips the', item, 'grants', 50, 'bonus to max hitpoints')
 			self.max_hp += 50
 			self.current_hp += 50
+			print('Press c to continue')
 			while not char == 'c':
 				char = getch()
 				
