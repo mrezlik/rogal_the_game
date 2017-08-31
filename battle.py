@@ -14,6 +14,8 @@ def fight(player, x, y):
 		monster = Enemy('Robot', 80, 5, 200)
 	elif [x, y] == [16,71]:
 		monster = Enemy('Alien', 50, 15, 150)
+	else:
+		monster = Enemy('Mutated Rat', 20, 1, 100)
 	
 	char = None
 	print(player.name, 'have encounter the', monster.name, end='')

@@ -21,15 +21,18 @@ def main():
 	os.system('clear')
 	player = Player(input('Name your hero:'))
 	current_map = create_board('map_1.txt')
-	#player_position = (9, 44)
 	inv = {"gold": ["coin", 10, 1]}
 	while not(x == 'q'):
 		x = None
 		os.system('clear')
 		print_board(current_map)
-		print_table(inv)
 		x = getch()
 		return_from_colision = colision(player, inv, current_map, x)
+		if x == "i":
+			print_table(inv)
+			x = None
+			while not x:
+				x = getch()
 		current_map = return_from_colision[0]
 		inv = return_from_colision[1]
 		change_player_position(player, current_map, x)

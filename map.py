@@ -39,10 +39,9 @@ def colision(player, inv, board, command=None, board_width=86, board_height=21):
 				inv = take_item(inv)
 			elif board[player.coordinate_y - 1][player.coordinate_x] == '%':
 				fight(player, player.coordinate_y - 1, player.coordinate_x)
-				if player.enemies_killed == 5:
+				if player.enemies_killed == 9:
 					board = create_board('map_2.txt')
 					change_player_position(board, 16, 65)
-				
 			else:
 				board[player.coordinate_y - 1][player.coordinate_x] = '@'
 				board[player.coordinate_y][player.coordinate_x] = ' '
@@ -56,7 +55,7 @@ def colision(player, inv, board, command=None, board_width=86, board_height=21):
 				inv = take_item(inv)
 			elif board[player.coordinate_y][player.coordinate_x - 1] == '%':
 				fight(player, player.coordinate_y, player.coordinate_x - 1)
-				if player.enemies_killed == 5:
+				if player.enemies_killed == 9:
 					board = create_board('map_2.txt')
 					change_player_position(board, 16, 65)
 			else:
@@ -72,7 +71,7 @@ def colision(player, inv, board, command=None, board_width=86, board_height=21):
 				inv = take_item(inv)
 			elif board[player.coordinate_y + 1][player.coordinate_x] == '%':
 				fight(player, player.coordinate_y + 1, player.coordinate_x)
-				if player.enemies_killed == 5:
+				if player.enemies_killed == 9:
 					board = create_board('map_2.txt')
 			else:
 				board[player.coordinate_y + 1][player.coordinate_x] = '@'
@@ -87,7 +86,7 @@ def colision(player, inv, board, command=None, board_width=86, board_height=21):
 				inv = take_item(inv)
 			elif board[player.coordinate_y][player.coordinate_x + 1] == '%':
 				fight(player, player.coordinate_y, player.coordinate_x + 1)
-				if player.enemies_killed == 5:
+				if player.enemies_killed == 9:
 					board = create_board('map_2.txt')
 			else:
 				board[player.coordinate_y][player.coordinate_x + 1] = '@'
@@ -144,4 +143,3 @@ def change_player_position(player, board, command=None, board_width=86, board_he
                 board[player.coordinate_y][player.coordinate_x + 1] = ' '
             else:
                 player.coordinate_x = player.coordinate_x + 1
-    return (player.coordinate_y, player.coordinate_x)
