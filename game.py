@@ -1,14 +1,14 @@
 import os
-import time
+#import time
 from controls import getch, movement
 from map import create_board, print_board
 from introduction import print_logo, story, about, help_controls
-from battle import fight
-from hall_of_fame import write_result, print_hall, clear
-from character import Character, Enemy, Player
+#from battle import fight
+from hall_of_fame import print_hall
+from character import Player
 from game_inventory import print_table
-from bossfight import bossfight
-from winlosescreen import win, lose
+#from bossfight import bossfight
+from winlosescreen import lose
 
 def new_game():
 	story()

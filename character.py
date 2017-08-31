@@ -1,5 +1,6 @@
 from controls import getch
 import time
+import os
 
 class Character:
 
@@ -15,7 +16,7 @@ class Player(Character):
 	strongest_monster_killed = 'You did not killed anything!'
 	level = 1
 	next_level = 100
-	enemies_killed = 0
+	enemies_killed = 23
 	coordinate_x = 44
 	coordinate_y = 9
 
@@ -39,12 +40,12 @@ class Player(Character):
 		self.damage += self.damage_grow
 
 	def choose_specialisation(self):
-		while True:
-			choice = input('Choose your character specialisation (1, 2 or 3):\n1) Soldier: high hitpoints, low dmg, special skill: Weapon Specialist - double damage bonuses from using weapons\n2) Adept: medium hitpoints, medium damage, special skill: Biotic Regeneration - after every combat regen 20% of max hitpoints\n3) Engineer: low hitpoints, high damage, special skill: Cloaking Field - attack twice in first round of combat\n')
-			if choice == '1' or choice == '2' or choice == '3':
-				break
-			else:
-				print('Choose 1, 2 or 3!')
+		choice = None
+		while not choice == '1' and not choice == '2' and not choice == '3':
+			os.system('clear')
+			print('Choose your character specialisation (1, 2 or 3):\n1) Soldier: high hitpoints, low dmg, special skill: Weapon Specialist - double damage bonuses from using weapons\n2) Adept: medium hitpoints, medium damage, special skill: Biotic Regeneration - after every combat regen 20% of max hitpoints\n3) Engineer: low hitpoints, high damage, special skill: Cloaking Field - attack twice in first round of combat\n')
+			choice = getch()
+			
 		if choice == '1':
 			self.specialisation = 'Soldier'
 			self.max_hp = 150
@@ -101,10 +102,8 @@ class Player(Character):
 			while not char == 'c':
 				char = getch()
 		elif 'First aid kit' in item:
-			print('Using first aid kit heals', int(self.max_hp * 0.5), 'hitpoints')
-			self.current_hp += int(self.max_hp * 0.5)
-			if self.current_hp > self.max_hp:
-				self.current_hp = self.max_hp
+			print('Using first aid kit heals', self.max_hp, 'hitpoints')
+			self.current_hp = self.max_hp
 			print('Press c to continue')
 		elif 'Shield' in item:
 			print(self.name, 'equips the', item, 'grants', 50, 'bonus to max hitpoints')
