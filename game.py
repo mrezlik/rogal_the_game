@@ -1,7 +1,7 @@
 import os
 import time
 from controls import getch
-from map import create_board, print_board, change_player_position, colision
+from map import create_board, print_board, colision
 from introduction import print_logo, story
 from battle import fight
 from hall_of_fame import write_result, print_hall, clear
@@ -35,7 +35,6 @@ def main():
 				x = getch()
 		current_map = return_from_colision[0]
 		inv = return_from_colision[1]
-		change_player_position(player, current_map, x)
 
 
 if __name__ == '__main__':
