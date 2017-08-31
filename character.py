@@ -16,7 +16,7 @@ class Player(Character):
 	strongest_monster_killed = 'You did not killed anything!'
 	level = 1
 	next_level = 100
-	enemies_killed = 23
+	enemies_killed = 0
 	coordinate_x = 44
 	coordinate_y = 9
 
