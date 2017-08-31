@@ -16,6 +16,7 @@ def movement(player, inv, board, command=None, board_width=86, board_height=21):
 	import random
 	from battle import fight
 	from map import take_item, create_board
+	from bossfight import bossfight
 	
 	feedback = ''
 	if command == 'w':
@@ -35,6 +36,8 @@ def movement(player, inv, board, command=None, board_width=86, board_height=21):
 					board = create_board('map_2.txt')
 					player.coordinate_x = 64
 					player.coordinate_y = 15
+				elif player.enemies_killed == 24:
+					bossfight(player)					
 				board[player.coordinate_y -1][player.coordinate_x] = ' '
 			else:
 				board[player.coordinate_y - 1][player.coordinate_x] = '@'
@@ -57,6 +60,8 @@ def movement(player, inv, board, command=None, board_width=86, board_height=21):
 					board = create_board('map_2.txt')
 					player.coordinate_x = 64
 					player.coordinate_y = 15
+				elif player.enemies_killed == 24:
+					bossfight(player)
 				board[player.coordinate_y][player.coordinate_x - 1] = ' '
 			else:
 				board[player.coordinate_y][player.coordinate_x - 1] = '@'
@@ -79,6 +84,8 @@ def movement(player, inv, board, command=None, board_width=86, board_height=21):
 					board = create_board('map_2.txt')
 					player.coordinate_x = 64
 					player.coordinate_y = 15
+				elif player.enemies_killed == 24:
+					bossfight(player)
 				board[player.coordinate_y + 1][player.coordinate_x] = ' '
 			else:
 				board[player.coordinate_y + 1][player.coordinate_x] = '@'
@@ -101,6 +108,8 @@ def movement(player, inv, board, command=None, board_width=86, board_height=21):
 					board = create_board('map_2.txt')
 					player.coordinate_x = 64
 					player.coordinate_y = 15
+				elif player.enemies_killed == 24:
+					bossfight(player)
 				board[player.coordinate_y][player.coordinate_x + 1] = ' '
 			else:
 				board[player.coordinate_y][player.coordinate_x + 1] = '@'

@@ -2,7 +2,7 @@ import os
 import random
 from hotwarmcold import game, generate_answer, check_answer, print_hint
 
-def bossfight():
+def bossfight(player):
 	answer = generate_answer()
 	guess_count = 10
 	os.system('clear')

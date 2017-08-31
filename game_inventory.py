@@ -24,7 +24,7 @@ def add_to_inventory(inventory, added_item):
         inventory[added_item[0]] = [added_item[1], added_item[2], added_item[3]]
     return inventory
 
-def remove_item(item, inventory)
+def remove_item(item, inventory):
     inventory[item][2] -= 1
     inventory[item][1] = inventory[added_item[0]][2] * added_item[2]
     return inventory
