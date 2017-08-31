@@ -2,7 +2,7 @@ import os
 import time
 from controls import getch, movement
 from map import create_board, print_board
-from introduction import print_logo, story, about
+from introduction import print_logo, story, about, help_controls
 from battle import fight
 from hall_of_fame import write_result, print_hall, clear
 from character import Character, Enemy, Player
@@ -10,13 +10,7 @@ from game_inventory import print_table
 from bossfight import bossfight
 from winlosescreen import win, lose
 
-def main():
-	os.system('clear')
-	print_logo()
-	x = None
-	while not(x == "c"):
-		about()
-		x = getch()
+def new_game():
 	story()
 	x = None
 	while not x:
@@ -40,9 +34,29 @@ def main():
 			x = None
 			while not x:
 				x = getch()
+		if x == "h":
+			help_controls()
+			x = None
+			while not x == 'c':
+				x = getch()
 		current_map = movement_return[0]
 		inv = movement_return[1]
 		feedback = movement_return[2]
+
+
+def main():
+	os.system('clear')
+	print_logo()
+	x = None
+	about()
+	while not x == '1' and not x == '2':
+		x = getch()
+	if x == '1':
+		new_game()
+	elif x == '2':
+		os.system('clear')
+		print_hall()
+		quit()
 
 
 if __name__ == '__main__':

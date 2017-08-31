@@ -47,15 +47,16 @@ def fight(player, x, y, inv):
 			player.unequip_item(key[0])
 		for key in inv.items():
 			if key[0] == 'First aid kit' :
-				print('Do you want to use first aid kit? y/n')
-				answer = input()
-				if answer == 'y':
+				print('Do you want to use first aid kit? Yes: y No: n')
+				while not char == 'n'or char == 'y':
+					char = getch()
+				if char == 'y':
 					player.use_item(key[0])
 		print('\n\n\nFight is over, for now...')
 		print('Press c to continue')
+		char = None
 		while not char == 'c':
 			char = getch()
-			
 		return None
 	turn_counter = 0
 	while True:
