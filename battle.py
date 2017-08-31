@@ -1,8 +1,11 @@
+import os
 from character import Character, Enemy, Player
 from winlosescreen import win, lose
 from controls import getch
 
 def fight(player, x, y):
+	
+	os.system('clear')
 	
 	if [x, y] == [12, 7]:
 		monster = Enemy('Mutated Rat', 20, 1, 100)

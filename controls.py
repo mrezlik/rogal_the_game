@@ -15,7 +15,7 @@ def getch():
 def movement(player, inv, board, command=None, board_width=86, board_height=21):
 	import random
 	from battle import fight
-	from map import take_item
+	from map import take_item, create_board
 	
 	feedback = ''
 	if command == 'w':
