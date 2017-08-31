@@ -41,7 +41,6 @@ def colision(player, inv, board, player_coordinate_y, player_coordinate_x, comma
 				fight(player, player_coordinate_y - 1, player_coordinate_x)
 				if player.enemies_killed == 5:
 					board = create_board('map_2.txt')
-				
 			else:
 				board[player_coordinate_y - 1][player_coordinate_x] = '@'
 				board[player_coordinate_y][player_coordinate_x] = ' '
