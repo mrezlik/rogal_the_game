@@ -1,15 +1,15 @@
 import random
 
 def game(answer, guess_count):
-	print('You have', guess_count, 'more chances', answer)
+	print('You have', guess_count, 'more chances')
 	guess = input("What is the number?")
 	hint = check_answer(answer, guess)
 	print_hint(hint)
-		
+
 	if hint == ["hot", "hot", "hot"]:
 		print("good job")
 		return 100
-		
+
 	guess_count -= 1
 	if guess_count == 0:
 		print("loser!")
@@ -49,4 +49,3 @@ def print_hint(hint):
 		else:
 			print('\033[91m' + "hot")
 	print('\033[00m', end='')
-
